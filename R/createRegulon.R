@@ -36,7 +36,7 @@ createRegulon <- function(single_cell,
   # Step 3: Scan candidate regions for TF binding motifs
   # Get motif data
   data("motifs", package = "scMORE")
-
+  data("motif2tf", package = "scMORE")
   single_cell <- Pando::find_motifs(
     single_cell,
     pfm = motifs,                          # Position Frequency Matrix (PFM) for motifs
