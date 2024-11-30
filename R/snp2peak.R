@@ -8,6 +8,7 @@
 #'        - buffer = 50bp, represent add 50 bp to both upstream and downstream of peak
 #' @return Data frame mapping SNPs to genomic peaks with associated log-transformed p-values
 #' @importFrom GenomicRanges GRanges
+#' @importFrom IRanges IRanges
 #' @export
 #'
 snp2peak <- function(snp_info, peak2gene_strength, buffer = 50) {
@@ -53,7 +54,7 @@ snp2peak <- function(snp_info, peak2gene_strength, buffer = 50) {
   # Create Peak GenomicRanges object
     peak_ranges <- GenomicRanges::GRanges(
                       seqnames = peak_bed$chr,
-                      ranges = IRanges(start = peak_bed$start, end = peak_bed$end),
+                      ranges = IRanges::IRanges(start = peak_bed$start, end = peak_bed$end),
                       TF = peak_bed$TF,
                       Target = peak_bed$Target,
                       peak_ids = peak_bed$peak_ids,
