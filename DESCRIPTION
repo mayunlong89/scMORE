@@ -21,6 +21,7 @@ Imports:
     dplyr,
     fitdistrplus,
     GenomicRanges,
+    IRanges,
     org.Hs.eg.db,
     Pando,
     Seurat,

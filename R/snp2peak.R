@@ -28,7 +28,7 @@ snp2peak <- function(snp_info, peak2gene_strength, buffer = 50) {
   # Create SNP GenomicRanges object
   snp_ranges <- GenomicRanges::GRanges(
     seqnames = snp_bed$chr,
-    ranges = IRanges(start = snp_bed$start, end = snp_bed$end),
+    ranges = IRanges::IRanges(start = snp_bed$start, end = snp_bed$end),
     snp_id = snp_bed$snp_id,
     log_P = snp_bed$log_P
   )
