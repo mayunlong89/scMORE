@@ -1,0 +1,27 @@
+Package: scMORE
+Title: Single-cell MultiOmics REgulon discovery
+Version: 2.0.0.9000
+Authors@R: 
+    person(given="Yunlong", 
+           family="Ma", 
+           email="glb-biotech@zju.edu.cn",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-1299-4802"))
+Description: scMORE is a powerful compuational framework designed for the discovery of disease-assocaited regulatory networks by integrating single-cell multiomics data and GWAS.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    ArchR,
+    BSgenome.Hsapiens.UCSC.hg38,
+    COSG,
+    dotgen,
+    dplyr,
+    fitdistrplus,
+    GenomicRanges,
+    org.Hs.eg.db,
+    Pando,
+    Seurat,
+    Signac,
+    tidyr
