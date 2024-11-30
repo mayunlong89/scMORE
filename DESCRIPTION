@@ -1,6 +1,6 @@
 Package: scMORE
 Title: Single-cell MultiOmics REgulon discovery
-Version: 2.0.0.9000
+Version: 2.0.0
 Authors@R: 
     person(given="Yunlong", 
            family="Ma", 
@@ -13,6 +13,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Imports: 
+    AnnotationDbi,
     ArchR,
     BSgenome.Hsapiens.UCSC.hg38,
     COSG,
@@ -25,3 +26,6 @@ Imports:
     Seurat,
     Signac,
     tidyr
+Depends: 
+    R (>= 2.10)
+LazyData: true

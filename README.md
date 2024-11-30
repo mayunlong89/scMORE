@@ -10,10 +10,12 @@ The goal of scMORE is to …
 
 ## Installation
 
-You can install the development version of scMORE like so:
+You can install the development version of scMORE from
+[GitHub](https://github.com/) with:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools")
+devtools::install_github("mayunlong89/scMORE")
 ```
 
 ## Example

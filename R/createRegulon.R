@@ -13,6 +13,7 @@
 #' @return A list containing:
 #'         - grn: Filtered GRN with regulons meeting the gene threshold
 #'         - tf_names: List of TFs with sufficient regulons
+#' @importFrom BSgenome.Hsapiens.UCSC.hg38 BSgenome.Hsapiens.UCSC.hg38
 #' @export
 #'
 createRegulon <- function(single_cell,
@@ -24,7 +25,7 @@ createRegulon <- function(single_cell,
   single_cell <- Seurat::FindVariableFeatures(single_cell, assay = "RNA")
 
 
-
+  data("phastConsElements20Mammals.UCSC.hg38", package = "scMORE")
   # Step 2: Initiate GRN object and select candidate regions
   single_cell <- Pando::initiate_grn(single_cell,
                                      peak_assay="peaks",
@@ -34,7 +35,7 @@ createRegulon <- function(single_cell,
 
   # Step 3: Scan candidate regions for TF binding motifs
   # Get motif data
-  data(motifs)
+  data("motifs", package = "scMORE")
 
   single_cell <- Pando::find_motifs(
     single_cell,
