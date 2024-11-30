@@ -15,7 +15,7 @@ checkSNPs <- function(snp_info, add_chr_prefix = TRUE) {
   if (!is.data.frame(snp_info)) {
     stop("Error: The input snp_info must be a data frame.")
   }
-
+  required_columns <- c("CHR", "POS", "LP", "SNP")
   # Check for missing columns
   missing_columns <- setdiff(required_columns, colnames(snp_info))
   if (length(missing_columns) > 0) {
