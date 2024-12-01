@@ -55,16 +55,15 @@ scMore <- function(single_cell,
   # Step 3: Identify cell type-specific regulons relevant to disease
   # This step integrates to determine disease associations
 
-  final_results <- regulon2disease(grn_outputs,
+  regulon2disease_results <- regulon2disease(grn_outputs,
                                    target_scores,
                                    snp_info,
                                    geneRiskScores)
 
+  scMore_results <- list(scMore_grn=grn_outputs,
+                         scMore_celltype_specificity=geneRiskScores,
+                         scMore_trait_results=regulon2disease_results)
+
   # Step 4: Return final results
-  return(final_results)
+  return(scMore_results)
 }
-
-
-
-
-

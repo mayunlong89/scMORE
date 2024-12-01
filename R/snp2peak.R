@@ -8,6 +8,8 @@
 #' @return Data frame mapping SNPs to genomic peaks with associated log-transformed p-values
 #' @importFrom GenomicRanges GRanges resize start end seqnames mcols
 #' @importFrom IRanges IRanges width findOverlaps
+#' @import dplyr
+#' @import tidyr
 #' @export
 #'
 snp2peak <- function(snp_info, peak2gene_strength, buffer = 50) {

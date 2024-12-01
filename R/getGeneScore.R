@@ -6,6 +6,7 @@
 #'
 #' @param gene_info Data frame of gene-based genetic association results (MAGMA or FUMA format)
 #' @importFrom dplyr %>% mutate arrange filter select
+#' @import dplyr
 #' @importFrom AnnotationDbi mapIds
 #' @import org.Hs.eg.db
 #' @return A data frame with columns:

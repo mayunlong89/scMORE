@@ -1,4 +1,4 @@
-#' Identify cell type-specific regulons relevant to disease using COSR and MORE methods
+#' @title Identify cell type-specific regulons relevant to disease using COSR and MORE methods
 #'
 #' @param grn_outputs GRN outputs containing TF-gene relationships
 #' @param target_scores Matrix of genes and TF specificity scores across cell types (columns: genes, scores, celltypes)
@@ -11,6 +11,7 @@
 #' @param mo Statistical model selection: mo = 1 for genetic weight model, mo = 0 for non-genetic model
 #' @param buffer Distance buffer (in base pairs) for SNP-to-peak mapping (default = 50)
 #' @return A list containing MORE_score (specificity*JSI) and MORE_perm_Pval (Monte Carlo P-values)
+#' @export
 
 regulon2disease <- function(grn_outputs,
                             target_scores,

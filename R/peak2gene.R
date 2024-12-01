@@ -3,6 +3,8 @@
 #'
 #' @param grn_outputs A list containing GRN output data, with a 'Regions' column specifying genomic peak ranges.
 #' @return A data frame mapping genes to genomic peaks with associated log-transformed p-values (Strength).
+#' @import dplyr
+#' @import tidyr
 #' @export
 #'
 peak2gene <- function(grn_outputs) {

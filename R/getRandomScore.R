@@ -9,15 +9,16 @@
 #'                          - scores: Specificity scores for each gene.
 #'                          - magma_zscore: MAGMA z-scores for each gene.
 #' @return A data frame with the original gene names and generated random specificity and MAGMA z-scores.
+#' @import fitdistrplus
 #' @export
 #'
 getRandomScore <- function(target_scores_sub) {
   # Step 1: Fit the distribution of specificity scores (Gamma distribution)
-  fit_scores <- fitdist(target_scores_sub$scores, "gamma")
+  fit_scores <- fitdistrplus::fitdist(target_scores_sub$scores, "gamma")
   #summary(fit_scores)
 
   # Step 2: Fit the distribution of MAGMA z-scores (Normal distribution)
-  fit_zscore <- fitdist(target_scores_sub$magma_zscore, "norm")
+  fit_zscore <- fitdistrplus::fitdist(target_scores_sub$magma_zscore, "norm")
   #summary(fit_zscore)
 
   # Step 3: Generate random data based on the fitted distributions

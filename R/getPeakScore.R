@@ -9,6 +9,7 @@
 #' @param w1 Weight of peak strength (peak-gene correlation, e.g., -log10(p-value)). Default = 0.5.
 #' @param w2 Weight of peak significance (genetic relevance, e.g., -log10 SNP p-value). Default = 0.5.
 #' @return A data frame where missing values are replaced and an 'Importance_weighted' column is added.
+#' @import dplyr
 #' @details
 #' - Replace NA in 'snp_id' with 'no_snp' and in 'Significance' with 0.
 #' - Calculate weighted importance scores for each peak using the formula: `w1 * Strength + w2 * Significance`.

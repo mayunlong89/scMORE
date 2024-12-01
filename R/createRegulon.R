@@ -14,6 +14,7 @@
 #'         - grn: Filtered GRN with regulons meeting the gene threshold
 #'         - tf_names: List of TFs with sufficient regulons
 #' @importFrom BSgenome.Hsapiens.UCSC.hg38 BSgenome.Hsapiens.UCSC.hg38
+#' @import Pando
 #' @export
 #'
 createRegulon <- function(single_cell,
@@ -37,6 +38,7 @@ createRegulon <- function(single_cell,
   # Get motif data
   data("motifs", package = "scMORE")
   data("motif2tf", package = "scMORE")
+
   single_cell <- Pando::find_motifs(
     single_cell,
     pfm = motifs,                          # Position Frequency Matrix (PFM) for motifs
