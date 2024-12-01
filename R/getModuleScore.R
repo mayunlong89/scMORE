@@ -22,7 +22,8 @@ getModuleScore <- function(eachModule) {
     ungroup()
 
   # Calculate the total importance score for the TF
-  tf_importance <- sum(filtered_eachModule$Importance_weighted, na.rm = TRUE) # Avoid errors caused by NA values
+  # Avoid errors caused by NA values
+  tf_importance <- sum(filtered_eachModule$Importance_weighted, na.rm = TRUE)/length(filtered_eachModule$Importance_weighted)
 
   # Extract the Target and Importance_weighted columns
   target_importance <- filtered_eachModule %>%
