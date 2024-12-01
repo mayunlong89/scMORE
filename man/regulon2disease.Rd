@@ -2,7 +2,7 @@
 % Please edit documentation in R/regulon2disease.R
 \name{regulon2disease}
 \alias{regulon2disease}
-\title{Identifying Cell Type-Specific Regulons Relevant to Disease}
+\title{Identify cell type-specific regulons relevant to disease using COSR and MORE methods}
 \usage{
 regulon2disease(
   grn_outputs,
@@ -18,29 +18,29 @@ regulon2disease(
 )
 }
 \arguments{
-\item{grn_outputs}{Output from GRN analysis containing TF names and regulatory connections.}
+\item{grn_outputs}{GRN outputs containing TF-gene relationships}
 
-\item{target_scores}{Specificity scores for genes and TFs across cell types.}
+\item{target_scores}{Matrix of genes and TF specificity scores across cell types (columns: genes, scores, celltypes)}
 
-\item{snp_info}{SNP information used for linking SNPs to peaks.}
+\item{snp_info}{Information about SNPs for the analysis}
 
-\item{geneRiskScores}{MAGMA-based gene risk scores with columns SYMBOL, logP, and ZSTAT.}
+\item{geneRiskScores}{MAGMA-based gene association results (columns: SYMBOL, logP, ZSTAT)}
 
-\item{perm_n}{Number of permutations for Monte Carlo analysis (default = 1000).}
+\item{perm_n}{Number of permutations for Monte Carlo simulation (default = 1000)}
 
-\item{top_genes}{Number of top-ranked genes to consider for regulon-disease links (default = 500).}
+\item{top_genes}{Number of top-ranked genes used for JSI calculation (default = 500)}
 
-\item{theta}{Weighting factor for averaging scores (range: 0.1 to 1, default = 0.5).}
+\item{theta}{Weight for integrating TF and gene scores (range: 0.1~1, default = 0.5)}
 
-\item{pow}{Power factor to amplify specificity differences (default = 1).}
+\item{pow}{Power parameter to emphasize specificity difference (default = 1)}
 
-\item{mo}{Statistical model: 1 = genetic weight model, 0 = non-genetic weight model (default = 1).}
+\item{mo}{Statistical model selection: mo = 1 for genetic weight model, mo = 0 for non-genetic model}
 
-\item{buffer}{Buffer size for SNP-peak mapping (default = 50 bp).}
+\item{buffer}{Distance buffer (in base pairs) for SNP-to-peak mapping (default = 50)}
 }
 \value{
-A list containing regulon-disease link scores (MORE_score) and their Monte Carlo p-values (MORE_perm_Pval).
+A list containing MORE_score (specificity*JSI) and MORE_perm_Pval (Monte Carlo P-values)
 }
 \description{
-This function identifies cell type-specific TF-regulons relevant to a disease using MAGMA-based gene risk scores, peak-gene and SNP-peak mapping, and COSR and JSI scoring.
+Identify cell type-specific regulons relevant to disease using COSR and MORE methods
 }
