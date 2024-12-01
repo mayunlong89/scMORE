@@ -14,13 +14,22 @@ getRandomWeight <- function(regulons, random_scores) {
 
   background_genes <- random_scores$genes
 
-  # Bin sampling
-  bins <- cut(
-    importance_weights,
-    breaks = quantile(importance_weights, probs = seq(0, 1, 0.1), na.rm = TRUE),
-    include.lowest = TRUE
-  )
+  # filter NA and 0 values
+  importance_weights <- importance_weights[!is.na(importance_weights) & importance_weights > 0]
+  if (length(importance_weights) < 2) {
+    stop("Insufficient valid data in importance_weights to create bins.")
+  }
 
+  # Bin sampling：quantile
+  bins <- tryCatch({
+    cut(
+      importance_weights,
+      breaks = quantile(importance_weights, probs = seq(0, 1, 0.1), na.rm = TRUE),
+      include.lowest = TRUE
+    )
+  }, error = function(e) {
+    stop("Error in creating bins: ", e$message)
+  })
   # Check if bins are valid
   if (any(is.na(bins))) {
     stop("Invalid bins detected. Check the importance_weights data.")
