@@ -5,7 +5,6 @@
 #' It extracts the highest importance score for each target and calculates the total importance for the transcription factor (TF).
 #'
 #' @param eachModule A single regulon; this is generated in the 'regulon2disease()' function.
-#' @import dplyr
 #' @return A data frame with two columns: `Target` and `Importance_weighted`.
 #'         The first row contains the TF name and its total importance score, followed by the targets with their highest importance scores.
 #' @export
@@ -18,8 +17,8 @@ getModuleScore <- function(eachModule) {
 
   # Extract the highest Importance_weighted value for each Target
   filtered_eachModule <- eachModule %>%
-    dplyr::sgroup_by(Target) %>%
-    dplyr::sslice_max(Importance_weighted, with_ties = FALSE) %>% # Ensure only the maximum value per Target is kept
+    dplyr::group_by(Target) %>%
+    dplyr::slice_max(Importance_weighted, with_ties = FALSE) %>% # Ensure only the maximum value per Target is kept
     ungroup()
 
   # Calculate the total importance score for the TF
