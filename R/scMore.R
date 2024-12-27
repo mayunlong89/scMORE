@@ -15,7 +15,6 @@
 #' @param buffer Numeric value specifying the flanking sizes (default = 50bp)
 #'          - Extend peak range (upstream and downstream by 50bp)
 #'          - buffer = 50bp represents adding 50bp to both upstream and downstream of a peak
-#' @param top_genes Number of top-ranked genes to consider (default = 500)
 #' @param top_n Top n targets of each TF to calculate the importance of the TF (default = 5)
 #' @param nSeed Set the seed for random sampling, i.e., set.seed() (default = 1234)
 #'
@@ -25,7 +24,6 @@ scMore <- function(single_cell,
                    snp_info,
                    gene_info,
                    n_targets = 5,
-                   top_genes = 500,
                    perm_n = 1000,
                    theta = 0.5,
                    alpha = 1,
