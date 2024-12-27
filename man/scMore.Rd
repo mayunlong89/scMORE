@@ -41,6 +41,11 @@ Range: 0.1 ~ 1 (default = 0.5)}
 \item{top_n}{Top n targets of each TF to calculate the importance of the TF (default = 5)}
 
 \item{nSeed}{Set the seed for random sampling, i.e., set.seed() (default = 1234)}
+
+\item{peak2gene_method}{Two methods to choose: 'Signac' and 'GREAT'}
+
+\item{infer_method}{Users can choose different inference methods: GLMs ('glm'),
+regularized GLMs('glmnet','cv.glmnet'), or Bayesian regression models('brms')}
 }
 \value{
 A list containing disease-relevant regulons and their associations
