@@ -1,4 +1,4 @@
-#' @title Identify cell type-specific regulons relevant to disease using COSR and MORE methods
+#' @title Identify cell type-specific regulons relevant to disease
 #'
 #' @param grn_outputs GRN outputs containing TF-gene relationships
 #' @param target_scores Matrix of genes and TF specificity scores across cell types (columns: genes, scores, celltypes)
@@ -9,7 +9,7 @@
 #' @param alpha Flexibility in penalization (default = 1)
 #' @param top_n Top n targets of each TF to calculate the importance of the TF (default = 5)
 #' @param buffer Distance buffer (in base pairs) for SNP-to-peak mapping (default = 500bp), which means each peak will be extended by 500bp upstream and 500bp downstream.
-#' @return A data frame containing MORE_score (specificity * JSI), MORE_perm_Pval (Monte Carlo P-values), and regulon-related statistics
+#' @return A data frame containing specificity, genetic risk score and regulon score and corresponding P values.
 #' @export
 
 regulon2disease <- function(grn_outputs,

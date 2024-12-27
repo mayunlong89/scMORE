@@ -4,16 +4,16 @@
 \alias{snp2peak}
 \title{Link SNPs to genomic peaks}
 \usage{
-snp2peak(snp_info, peak2gene_strength, buffer = 50)
+snp2peak(snp_info, peak2gene_strength, buffer = 500)
 }
 \arguments{
 \item{snp_info}{Data frame containing SNP information (required columns: CHR, POS, LP, SNP)}
 
 \item{peak2gene_strength}{List containing GRN output, with a 'Regions' column for peaks}
 
-\item{buffer}{Numeric value specifying the flanking sizes (default = 0)
-- extend peak range (upstream and downstream + 50bp)
-- buffer = 50bp, represent add 50 bp to both upstream and downstream of peak}
+\item{buffer}{Numeric value specifying the flanking sizes (default = 500bp)
+- extend peak range (both upstream and downstream + 500bp)
+- buffer = 500bp, represent add 500 bp to both upstream and downstream of peak}
 }
 \value{
 Data frame mapping SNPs to genomic peaks with associated log-transformed p-values

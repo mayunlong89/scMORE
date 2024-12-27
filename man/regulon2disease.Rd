@@ -2,19 +2,18 @@
 % Please edit documentation in R/regulon2disease.R
 \name{regulon2disease}
 \alias{regulon2disease}
-\title{Identify cell type-specific regulons relevant to disease using COSR and MORE methods}
+\title{Identify cell type-specific regulons relevant to disease}
 \usage{
 regulon2disease(
   grn_outputs,
   target_scores,
-  snp_info,
   geneRiskScores,
+  snp_info,
   perm_n = 1000,
-  top_genes = 500,
   theta = 0.5,
-  pow = 1,
-  mo = 1,
-  buffer = 50
+  alpha = 1,
+  top_n = 5,
+  buffer = 500
 )
 }
 \arguments{
@@ -22,25 +21,23 @@ regulon2disease(
 
 \item{target_scores}{Matrix of genes and TF specificity scores across cell types (columns: genes, scores, celltypes)}
 
-\item{snp_info}{Information about SNPs for the analysis}
-
 \item{geneRiskScores}{MAGMA-based gene association results (columns: SYMBOL, logP, ZSTAT)}
+
+\item{snp_info}{Information about SNPs for the analysis}
 
 \item{perm_n}{Number of permutations for Monte Carlo simulation (default = 1000)}
 
-\item{top_genes}{Number of top-ranked genes used for JSI calculation (default = 500)}
-
 \item{theta}{Weight for integrating TF and gene scores (range: 0.1~1, default = 0.5)}
 
-\item{pow}{Power parameter to emphasize specificity difference (default = 1)}
+\item{alpha}{Flexibility in penalization (default = 1)}
 
-\item{mo}{Statistical model selection: mo = 1 for genetic weight model, mo = 0 for non-genetic model}
+\item{top_n}{Top n targets of each TF to calculate the importance of the TF (default = 5)}
 
-\item{buffer}{Distance buffer (in base pairs) for SNP-to-peak mapping (default = 50)}
+\item{buffer}{Distance buffer (in base pairs) for SNP-to-peak mapping (default = 500bp), which means each peak will be extended by 500bp upstream and 500bp downstream.}
 }
 \value{
-A list containing MORE_score (specificity*JSI) and MORE_perm_Pval (Monte Carlo P-values)
+A data frame containing specificity, genetic risk score and regulon score and corresponding P values.
 }
 \description{
-Identify cell type-specific regulons relevant to disease using COSR and MORE methods
+Identify cell type-specific regulons relevant to disease
 }

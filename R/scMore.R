@@ -15,6 +15,9 @@
 #' @param buffer Numeric value specifying the flanking sizes (default = 500bp)
 #'          - Extend peak range (upstream and downstream by 500bp)
 #'          - buffer = 500bp represents adding 500bp to both upstream and downstream of a peak
+#' @param peak2gene_method Two methods to choose: 'Signac' and 'GREAT'
+#' @param infer_method Users can choose different inference methods: GLMs ('glm'),
+#'                    regularized GLMs('glmnet','cv.glmnet'), or Bayesian regression models('brms')
 #' @param top_n Top n targets of each TF to calculate the importance of the TF (default = 5)
 #' @param nSeed Set the seed for random sampling, i.e., set.seed() (default = 1234)
 #'

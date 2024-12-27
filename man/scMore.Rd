@@ -9,12 +9,11 @@ scMore(
   snp_info,
   gene_info,
   n_targets = 5,
-  top_genes = 500,
   perm_n = 1000,
   theta = 0.5,
-  pow = 1,
-  mo = 1,
-  buffer = 50,
+  alpha = 1,
+  buffer = 500,
+  top_n = 5,
   nSeed = 1234
 )
 }
@@ -24,28 +23,24 @@ scMore(
 \item{snp_info}{GWAS summary statistics, must include columns: chr, pos, rsID, beta, p-value}
 
 \item{gene_info}{Gene-based genetic association results based on MAGMA or FUMA
-scMORE support the format of results from MAGMA and FUMA}
+scMORE supports the format of results from MAGMA and FUMA}
 
 \item{n_targets}{Minimum number of targets required in a given regulon (default = 5)}
-
-\item{top_genes}{Number of top-ranked disease-specific genes for JSI enrichment (default = 500)}
 
 \item{perm_n}{Number of Monte Carlo permutations for significance testing (default = 1000)}
 
 \item{theta}{Weight to adjust the specificity score of target genes in each regulon
 Range: 0.1 ~ 1 (default = 0.5)}
 
-\item{pow}{Soft-power factor to emphasize strong specificity (default = 1)}
+\item{alpha}{Flexibility in penalization (default = 1)}
 
-\item{mo}{Statistical model selection:
-- mo = 1: Genetic weight model
-- mo = 0: Non-genetic weight model}
+\item{buffer}{Numeric value specifying the flanking sizes (default = 500bp)
+- Extend peak range (upstream and downstream by 500bp)
+- buffer = 500bp represents adding 500bp to both upstream and downstream of a peak}
 
-\item{buffer}{Numeric value specifying the flanking sizes (default = 0)
-- extend peak range (upstream and downstream + 50bp)
-- buffer = 50bp, represent add 50 bp to both upstream and downstream of peak}
+\item{top_n}{Top n targets of each TF to calculate the importance of the TF (default = 5)}
 
-\item{nSeed}{set the seed for random sampling, i.e., set.seed()}
+\item{nSeed}{Set the seed for random sampling, i.e., set.seed() (default = 1234)}
 }
 \value{
 A list containing disease-relevant regulons and their associations
