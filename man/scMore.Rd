@@ -18,38 +18,38 @@ scMore(
 )
 }
 \arguments{
-\item{single_cell}{The input single-cell data}
+\item{single_cell}{The input single-cell data.}
 
-\item{snp_info}{GWAS summary statistics, must include columns: chr, pos, rsID, beta, p-value}
+\item{snp_info}{GWAS summary statistics, must include columns: chr, pos, rsID, beta, p-value.}
 
-\item{gene_info}{Gene-based genetic association results based on MAGMA or FUMA
-scMORE supports the format of results from MAGMA and FUMA}
+\item{gene_info}{Gene-based genetic association results based on MAGMA or FUMA,
+(scMORE supports the format of results from MAGMA and FUMA).}
 
-\item{n_targets}{Minimum number of targets required in a given regulon (default = 5)}
+\item{n_targets}{Minimum number of targets required in a given regulon (default = 5).}
 
-\item{perm_n}{Number of Monte Carlo permutations for significance testing (default = 1000)}
+\item{perm_n}{Number of Monte Carlo permutations for significance testing (default = 1000).}
 
-\item{theta}{Weight to adjust the specificity score of target genes in each regulon
-Range: 0.1 ~ 1 (default = 0.5)}
+\item{theta}{Weight to adjust the specificity score of target genes in each regulon,
+Range: 0.1 ~ 1 (default = 0.5).}
 
-\item{alpha}{Flexibility in penalization (default = 1)}
+\item{alpha}{Flexibility in penalization (default = 1).}
 
-\item{buffer}{Numeric value specifying the flanking sizes (default = 500bp)
+\item{buffer}{Numeric value specifying the flanking sizes (default = 500bp).
 - Extend peak range (upstream and downstream by 500bp)
 - buffer = 500bp represents adding 500bp to both upstream and downstream of a peak}
 
-\item{top_n}{Top n targets of each TF to calculate the importance of the TF (default = 5)}
+\item{top_n}{Top n targets of each TF to calculate the importance of the TF (default = 5).}
 
-\item{nSeed}{Set the seed for random sampling, i.e., set.seed() (default = 1234)}
+\item{nSeed}{Set the seed for random sampling, i.e., set.seed() (default = 1234).}
 
-\item{peak2gene_method}{Two methods to choose: 'Signac' and 'GREAT'}
+\item{peak2gene_method}{Two methods to choose: 'Signac' and 'GREAT'.}
 
 \item{infer_method}{Users can choose different inference methods: GLMs ('glm'),
-regularized GLMs('glmnet','cv.glmnet'), or Bayesian regression models('brms')}
+regularized GLMs('glmnet','cv.glmnet'), or Bayesian regression models('brms').}
 }
 \value{
-A list containing disease-relevant regulons and their associations
+A list containing disease-relevant regulons and their associations.
 }
 \description{
-Main function for identifying disease-relevant regulons using single-cell data
+Main function for identifying disease-relevant regulons using single-cell data.
 }
