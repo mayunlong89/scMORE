@@ -11,7 +11,6 @@
 #' @param buffer Distance buffer (in base pairs) for SNP-to-peak mapping (default = 500bp), which means each peak will be extended by 500bp upstream and 500bp downstream.
 #' @return A data frame containing specificity, genetic risk score and regulon score and corresponding P values.
 #' @export
-
 regulon2disease <- function(grn_outputs,
                             target_scores,
                             geneRiskScores,
@@ -23,6 +22,7 @@ regulon2disease <- function(grn_outputs,
                             buffer = 500) {
 
   # Step 1: Map SNPs to TF-peaks and target genes
+  message("Step 1: Mapping SNPs to TF-peaks and target genes...")
   peak2gene_strength <- peak2gene(grn_outputs)  # Map peaks to genes
   snp2peak_map <- snp2peak(snp_info, peak2gene_strength, buffer = buffer)  # SNP-to-peak mapping
 
@@ -34,6 +34,7 @@ regulon2disease <- function(grn_outputs,
   regulons <- snp2peak_map[, c("snp_id", "peak_ids", "TF", "Target", "Importance_weighted")]
 
   # Step 2: Define TF list and cell types
+  message("Step 2: Defining TF list and cell types...")
   tf_list <- grn_outputs$tf_names  # Transcription factors
   all_celltype_names <- unique(target_scores[, "celltypes"])  # Cell types
 
@@ -60,6 +61,7 @@ regulon2disease <- function(grn_outputs,
   # Step 3: Perform COSR and MORE analysis for each cell type and TF
   for (i in seq_along(all_celltype_names)) {
     for (j in seq_along(tf_list)) {
+
       # Extract regulon genes for the current TF
       Module <- regulons[regulons$TF == tf_list[j], ]
       Module_regulon <- c(unique(Module$TF), unique(Module$Target))
@@ -86,7 +88,7 @@ regulon2disease <- function(grn_outputs,
       # Run Monte Carlo permutation analysis
       len_of_regulon <- length(Module_regulon)
       target_scores_background <- target_scores_sub
-      real_specificity <- target_scores_sub$scores[match(target_scores_sub$genes, regulons$Target, nomatch = 0) > 0]
+      real_specificity <- target_scores_sub$scores[match(target_scores_sub[, "genes"], regulons$Target, nomatch = 0) > 0]
       real_importance <- regulons$Importance_weighted
 
       perm_results <- replicate(
@@ -118,9 +120,9 @@ regulon2disease <- function(grn_outputs,
       p_importance <- (1 + sum(perm_importance >= TARS$GeneRiskScore)) / (1 + length(perm_importance))
       p_regulon <- (1 + sum(perm_regulon >= TARS$RegulonScore)) / (1 + length(perm_regulon))
 
-      z_specificity <- (TARS$SpecificityScore - mean(perm_specificity)) / sd(perm_specificity)
-      z_importance <- (TARS$GeneRiskScore - mean(perm_importance)) / sd(perm_importance)
-      z_regulon <- (TARS$RegulonScore - mean(perm_regulon)) / sd(perm_regulon)
+      z_specificity <- if (sd(perm_specificity) == 0) NA else (TARS$SpecificityScore - mean(perm_specificity)) / sd(perm_specificity)
+      z_importance <- if (sd(perm_importance) == 0) NA else (TARS$GeneRiskScore - mean(perm_importance)) / sd(perm_importance)
+      z_regulon <- if (sd(perm_regulon) == 0) NA else (TARS$RegulonScore - mean(perm_regulon)) / sd(perm_regulon)
 
       # Append results to the data frame
       all_regulon_results_df <- rbind(
