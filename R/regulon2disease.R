@@ -91,7 +91,7 @@ regulon2disease <- function(grn_outputs,
 
       perm_results <- replicate(
         perm_n,
-        generate_random_regulon_scores(
+        getRandomScores(
           tf_list,
           target_scores_background,
           real_specificity,
