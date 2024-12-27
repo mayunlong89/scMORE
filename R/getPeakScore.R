@@ -11,16 +11,15 @@
 #' - Replace NA in 'Significance', 'Strength', and 'geneScores' with their column mean.
 #' - Calculate importance scores for each peak using the formula: `Strength * Significance * geneScores`.
 #' @export
-#' 
+#'
 getPeakScore <- function(snp2peak_map) {
-  library(dplyr)
-  
+
   # Step 1: Validate input
   required_columns <- c("snp_id", "Significance", "Strength", "geneScores")
   if (!all(required_columns %in% colnames(snp2peak_map))) {
     stop(paste("Input data frame must contain the following columns:", paste(required_columns, collapse = ", ")))
   }
-  
+
   # Helper function for mean replacement
   mean_with_default <- function(x, default = 0) {
     if (all(is.na(x))) {
@@ -28,7 +27,7 @@ getPeakScore <- function(snp2peak_map) {
     }
     return(mean(x, na.rm = TRUE))
   }
-  
+
   # Step 2: Replace missing values and clean non-numeric entries
   snp2peak_map <- snp2peak_map %>%
     mutate(
@@ -37,7 +36,7 @@ getPeakScore <- function(snp2peak_map) {
       Strength = suppressWarnings(as.numeric(as.character(Strength))),
       geneScores = suppressWarnings(as.numeric(as.character(geneScores)))
     )
-  
+
   # Replace non-numeric entries converted to NA
   snp2peak_map <- snp2peak_map %>%
     mutate(
@@ -45,14 +44,14 @@ getPeakScore <- function(snp2peak_map) {
       Strength = ifelse(is.na(Strength), mean_with_default(Strength), Strength),
       geneScores = ifelse(is.na(geneScores), mean_with_default(geneScores), geneScores)
     )
-  
+
   # Step 3: Calculate importance scores
   snp2peak_map <- snp2peak_map %>%
     mutate(
       Score_multipled = Strength * Significance * geneScores, # Formula: Multiplicative score
       Importance_weighted = max_min_scale(log10(Score_multipled + 1e-6))
     )
-  
+
   # Step 4: Return the updated data frame
   return(snp2peak_map)
 }
