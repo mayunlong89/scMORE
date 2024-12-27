@@ -12,9 +12,9 @@
 #' @param theta Weight to adjust the specificity score of target genes in each regulon
 #'              Range: 0.1 ~ 1 (default = 0.5)
 #' @param alpha Flexibility in penalization (default = 1)
-#' @param buffer Numeric value specifying the flanking sizes (default = 50bp)
-#'          - Extend peak range (upstream and downstream by 50bp)
-#'          - buffer = 50bp represents adding 50bp to both upstream and downstream of a peak
+#' @param buffer Numeric value specifying the flanking sizes (default = 500bp)
+#'          - Extend peak range (upstream and downstream by 500bp)
+#'          - buffer = 500bp represents adding 500bp to both upstream and downstream of a peak
 #' @param top_n Top n targets of each TF to calculate the importance of the TF (default = 5)
 #' @param nSeed Set the seed for random sampling, i.e., set.seed() (default = 1234)
 #'
@@ -27,7 +27,7 @@ scMore <- function(single_cell,
                    perm_n = 1000,
                    theta = 0.5,
                    alpha = 1,
-                   buffer = 50,
+                   buffer = 500,
                    top_n = 5,
                    nSeed = 1234) {
 
