@@ -46,7 +46,7 @@ scMore <- function(single_cell,
   # Step 2: Calculate specificity scores for target genes
   # Evaluate the relevance of target genes to specific regulons
   message("Step 2: Calculating specificity scores for target genes...")
-  target_scores <- getSpecificity(single_cell)
+  target_scores <- suppressWarnings(getSpecificity(single_cell))
 
   # Step 3: Get gene-level association scores
   message("Step 3: Retrieving gene-level association scores...")
