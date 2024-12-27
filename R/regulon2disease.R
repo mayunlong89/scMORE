@@ -11,6 +11,7 @@
 #' @param buffer Distance buffer (in base pairs) for SNP-to-peak mapping (default = 500bp), which means each peak will be extended by 500bp upstream and 500bp downstream.
 #' @return A data frame containing specificity, genetic risk score and regulon score and corresponding P values.
 #' @export
+#'
 regulon2disease <- function(grn_outputs,
                             target_scores,
                             geneRiskScores,
