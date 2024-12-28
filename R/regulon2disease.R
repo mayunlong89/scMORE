@@ -32,7 +32,7 @@
 #' @return A data frame containing the following:
 #'         - `specificity`: Cell type-specificity scores for each regulon.
 #'         - `genetic_risk_score`: Genetic risk scores for each regulon.
-#'         - `regulon_score`: Combined trait-associated regulon scores (TARS).
+#'         - `regulon_score`: Trait-associated regulon scores (TARS).
 #'         - `p_values`: Statistical significance values for specificity, risk, and regulon scores.
 #'
 #' @export
