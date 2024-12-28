@@ -1,15 +1,40 @@
-#' @title Identify cell type-specific regulons relevant to disease
+#' @title Identify Cell Type-Specific Regulons Relevant to Disease
 #'
-#' @param grn_outputs GRN outputs containing TF-gene relationships
-#' @param target_scores Matrix of genes and TF specificity scores across cell types (columns: genes, scores, celltypes)
-#' @param snp_info Information about SNPs for the analysis
-#' @param geneRiskScores MAGMA-based gene association results (columns: SYMBOL, logP, ZSTAT)
-#' @param perm_n Number of permutations for Monte Carlo simulation (default = 1000)
-#' @param theta Weight for integrating TF and gene scores (range: 0.1~1, default = 0.5)
-#' @param alpha Flexibility in penalization (default = 1)
-#' @param top_n Top n targets of each TF to calculate the importance of the TF (default = 5)
-#' @param buffer Distance buffer (in base pairs) for SNP-to-peak mapping (default = 500bp), which means each peak will be extended by 500bp upstream and 500bp downstream.
-#' @return A data frame containing specificity, genetic risk score and regulon score and corresponding P values.
+#' @description
+#' Function to identify cell type-specific regulons that are associated with disease by integrating
+#' TF-gene relationships, cell type specificity scores, and genetic risk scores.
+#'
+#' @param grn_outputs GRN (Gene Regulatory Network) outputs containing TF-gene relationships.
+#' @param target_scores A matrix of genes and their TF specificity scores across cell types.
+#'                      Columns include:
+#'                      - `genes`: Gene names
+#'                      - `scores`: TF specificity scores
+#'                      - `celltypes`: Cell type annotations
+#' @param snp_info SNP information used for the analysis.
+#' @param geneRiskScores Gene-based genetic association results from MAGMA. Must include the following columns:
+#'                       - `SYMBOL`: Gene symbols
+#'                       - `logP`: Log-transformed p-values
+#'                       - `ZSTAT`: Z-scores from MAGMA
+#' @param perm_n Number of permutations for Monte Carlo simulation. Default: 1000.
+#' @param theta Weighting factor for integrating TF and gene specificity scores. Range: 0.1 to 1. Default: 0.5.
+#' @param alpha Flexibility parameter for penalization in the scoring model. Default: 1.
+#' @param top_n Number of top targets for each TF used to calculate TF importance. Default: 5.
+#' @param buffer Numeric value specifying the flanking region size for genomic peaks.
+#'               Extends the peak range upstream and downstream by the specified value.
+#'               For example, `buffer = 500` adds 500 bp on both sides of a peak. Default: 500 bp.
+#' @param p1 Threshold for statistical significance of the cell type-specificity score
+#'           for each regulon. Default: 0.05.
+#' @param p2 Threshold for statistical significance of the genetic risk score
+#'           for each regulon. Default: 0.05.
+#' @param p3 Threshold for statistical significance of the trait-associated regulon score (TARS).
+#'           Default: 0.05.
+#'
+#' @return A data frame containing the following:
+#'         - `specificity`: Cell type-specificity scores for each regulon.
+#'         - `genetic_risk_score`: Genetic risk scores for each regulon.
+#'         - `regulon_score`: Combined trait-associated regulon scores (TARS).
+#'         - `p_values`: Statistical significance values for specificity, risk, and regulon scores.
+#'
 #' @export
 #'
 regulon2disease <- function(grn_outputs,
@@ -20,7 +45,10 @@ regulon2disease <- function(grn_outputs,
                             theta = 0.5,
                             alpha = 1,
                             top_n = 5,
-                            buffer = 500) {
+                            buffer = 500,
+                            p1=0.05,
+                            p2=0.05,
+                            p3=0.05) {
 
   # Step 4.1: Map SNPs to TF-peaks and target genes
   message("Step 4.1: Mapping SNPs to TF-peaks and target genes...")
@@ -156,9 +184,9 @@ regulon2disease <- function(grn_outputs,
   # Step 4.4 Add significance column
   message("Step 4.4: Adding Significance column...")
   all_regulon_results_df$Significance <- ifelse(
-    all_regulon_results_df$SpecificityScore_p < 0.05 &
-      all_regulon_results_df$ImportanceWeightScore_p < 0.05 &
-      all_regulon_results_df$RegulonScore_p < 0.05,
+    all_regulon_results_df$SpecificityScore_p < p1 &
+      all_regulon_results_df$ImportanceWeightScore_p < p2 &
+      all_regulon_results_df$RegulonScore_p < p3,
     "Significant",
     "Nonsignificant"
   )
