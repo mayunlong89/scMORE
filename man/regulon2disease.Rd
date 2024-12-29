@@ -2,7 +2,7 @@
 % Please edit documentation in R/regulon2disease.R
 \name{regulon2disease}
 \alias{regulon2disease}
-\title{Identify cell type-specific regulons relevant to disease}
+\title{Identify Cell Type-Specific Regulons Relevant to Disease}
 \usage{
 regulon2disease(
   grn_outputs,
@@ -13,31 +13,57 @@ regulon2disease(
   theta = 0.5,
   alpha = 1,
   top_n = 5,
-  buffer = 500
+  buffer = 500,
+  p1 = 0.05,
+  p2 = 0.05,
+  p3 = 0.05
 )
 }
 \arguments{
-\item{grn_outputs}{GRN outputs containing TF-gene relationships}
+\item{grn_outputs}{GRN (Gene Regulatory Network) outputs containing TF-gene relationships.}
 
-\item{target_scores}{Matrix of genes and TF specificity scores across cell types (columns: genes, scores, celltypes)}
+\item{target_scores}{A matrix of genes and their TF specificity scores across cell types.
+Columns include:
+- \code{genes}: Gene names
+- \code{scores}: TF specificity scores
+- \code{celltypes}: Cell type annotations}
 
-\item{geneRiskScores}{MAGMA-based gene association results (columns: SYMBOL, logP, ZSTAT)}
+\item{geneRiskScores}{Gene-based genetic association results from MAGMA. Must include the following columns:
+- \code{SYMBOL}: Gene symbols
+- \code{logP}: Log-transformed p-values
+- \code{ZSTAT}: Z-scores from MAGMA}
 
-\item{snp_info}{Information about SNPs for the analysis}
+\item{snp_info}{SNP information used for the analysis.}
 
-\item{perm_n}{Number of permutations for Monte Carlo simulation (default = 1000)}
+\item{perm_n}{Number of permutations for Monte Carlo simulation. Default: 1000.}
 
-\item{theta}{Weight for integrating TF and gene scores (range: 0.1~1, default = 0.5)}
+\item{theta}{Weighting factor for integrating TF and gene specificity scores. Range: 0.1 to 1. Default: 0.5.}
 
-\item{alpha}{Flexibility in penalization (default = 1)}
+\item{alpha}{Flexibility parameter for penalization in the scoring model. Default: 1.}
 
-\item{top_n}{Top n targets of each TF to calculate the importance of the TF (default = 5)}
+\item{top_n}{Number of top targets for each TF used to calculate TF importance. Default: 5.}
 
-\item{buffer}{Distance buffer (in base pairs) for SNP-to-peak mapping (default = 500bp), which means each peak will be extended by 500bp upstream and 500bp downstream.}
+\item{buffer}{Numeric value specifying the flanking region size for genomic peaks.
+Extends the peak range upstream and downstream by the specified value.
+For example, \code{buffer = 500} adds 500 bp on both sides of a peak. Default: 500 bp.}
+
+\item{p1}{Threshold for statistical significance of the cell type-specificity score
+for each regulon. Default: 0.05.}
+
+\item{p2}{Threshold for statistical significance of the genetic risk score
+for each regulon. Default: 0.05.}
+
+\item{p3}{Threshold for statistical significance of the trait-associated regulon score (TARS).
+Default: 0.05.}
 }
 \value{
-A data frame containing specificity, genetic risk score and regulon score and corresponding P values.
+A data frame containing the following:
+- \code{specificity}: Cell type-specificity scores for each regulon.
+- \code{genetic_risk_score}: Genetic risk scores for each regulon.
+- \code{regulon_score}: Trait-associated regulon scores (TARS).
+- \code{p_values}: Statistical significance values for specificity, risk, and regulon scores.
 }
 \description{
-Identify cell type-specific regulons relevant to disease
+Function to identify cell type-specific regulons that are associated with disease by integrating
+TF-gene relationships, cell type specificity scores, and genetic risk scores.
 }

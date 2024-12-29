@@ -46,9 +46,9 @@ regulon2disease <- function(grn_outputs,
                             alpha = 1,
                             top_n = 5,
                             buffer = 500,
-                            p1=0.05,
-                            p2=0.05,
-                            p3=0.05) {
+                            p1 = 0.05,
+                            p2 = 0.05,
+                            p3 = 0.05) {
 
   # Step 4.1: Map SNPs to TF-peaks and target genes
   message("Step 4.1: Mapping SNPs to TF-peaks and target genes...")

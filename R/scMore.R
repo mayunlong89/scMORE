@@ -46,6 +46,9 @@ scMore <- function(single_cell,
                    alpha = 1,
                    buffer = 500,
                    top_n = 5,
+                   p1 = 0.05,
+                   p2 = 0.05,
+                   p3 = 0.05,
                    nSeed = 1234) {
 
   # Set random seed for reproducibility
