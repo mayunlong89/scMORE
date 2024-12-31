@@ -81,11 +81,7 @@ regulon2disease <- function(grn_outputs,
     stringsAsFactors = FALSE
   )
 
-  # Open progress bar
-  pb <- txtProgressBar(style = 3)
-  start_time <- Sys.time()
-  total_run <- length(all_celltype_names) * length(tf_list)
-  count <- 0
+
 
   # Initialize a list to store random scores
   perm_specificity_all <- numeric()
@@ -95,6 +91,13 @@ regulon2disease <- function(grn_outputs,
 
   # Step 4.3: Perform scMORE analysis for each cell type and regulon
   message("Step 4.3: Calculate Trait-Asssociated Regulon Score and Signifiance...")
+
+  # Open progress bar
+  pb <- txtProgressBar(style = 3)
+  start_time <- Sys.time()
+  total_run <- length(all_celltype_names) * length(tf_list)
+  count <- 0
+
   for (i in seq_along(all_celltype_names)) {
     for (j in seq_along(tf_list)) {
 
@@ -121,12 +124,13 @@ regulon2disease <- function(grn_outputs,
       # Compute regulon scores (TARS)
       TARS <- getRegulonScore(each_module_score, theta = theta, alpha = alpha)
 
-      # Run Monte Carlo permutation analysis
+      # Run Monte Carlo (MC) permutation analysis
       len_of_regulon <- length(Module_regulon)
       target_scores_background <- target_scores_sub
       real_specificity <- target_scores_sub$scores[match(target_scores_sub[, "genes"], regulons$Target, nomatch = 0) > 0]
       real_importance <- regulons$Importance_weighted
 
+      # MC analysis
       perm_results <- replicate(
         perm_n,
         getRandomScore(
