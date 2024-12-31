@@ -14,6 +14,9 @@ scMore(
   alpha = 1,
   buffer = 500,
   top_n = 5,
+  p1 = 0.05,
+  p2 = 0.05,
+  p3 = 0.05,
   nSeed = 1234
 )
 }
@@ -42,8 +45,6 @@ extends 500 bp on both sides of a peak. Default: 500 bp.}
 
 \item{top_n}{Number of top targets for each TF used to calculate its importance. Default: 5.}
 
-\item{nSeed}{Random seed for reproducibility (i.e., \code{set.seed()}). Default: 1234.}
-
 \item{p1}{Threshold for statistical significance of the cell type-specificity score
 for each regulon. Default: 0.05.}
 
@@ -52,6 +53,8 @@ for each regulon. Default: 0.05.}
 
 \item{p3}{Threshold for statistical significance of the trait-associated regulon score (TARS).
 Default: 0.05.}
+
+\item{nSeed}{Random seed for reproducibility (i.e., \code{set.seed()}). Default: 1234.}
 
 \item{peak2gene_method}{Method for mapping peaks to genes. Options: \code{'Signac'} or \code{'GREAT'}.}
 
