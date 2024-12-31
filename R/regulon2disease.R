@@ -179,8 +179,8 @@ regulon2disease <- function(grn_outputs,
     }
   }
 
-  # Step 4.5 Add significance column
-  message("Step 4.5: Adding Significance column...")
+  # Step 4.4 Add significance column
+  message("Step 4.4: Adding Significance column...")
   all_regulon_results_df$Significance <- ifelse(
     all_regulon_results_df$SpecificityScore_p < p1 &
       all_regulon_results_df$ImportanceWeightScore_p < p2 &
