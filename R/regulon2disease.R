@@ -81,14 +81,6 @@ regulon2disease <- function(grn_outputs,
     stringsAsFactors = FALSE
   )
 
-
-
-  # Initialize a list to store random scores
-  perm_specificity_all <- numeric()
-  perm_importance_all <- numeric()
-  perm_regulon_all <- numeric()
-
-
   # Step 4.3: Perform scMORE analysis for each cell type and regulon
   message("Step 4.3: Calculate Trait-Asssociated Regulon Score and Signifiance...")
 
@@ -155,16 +147,12 @@ regulon2disease <- function(grn_outputs,
       perm_importance <- perm_importance[!is.na(perm_importance)]
       perm_regulon <- perm_regulon[!is.na(perm_regulon)]
 
-      # Accumulate random scores
-      perm_specificity_all <- c(perm_specificity_all, perm_specificity)
-      perm_importance_all <- c(perm_importance_all, perm_importance)
-      perm_regulon_all <- c(perm_regulon_all, perm_regulon)
-
       # Calculate p-values and z-scores
-      #p_specificity <- (1 + sum(perm_specificity >= TARS$SpecificityScore)) / (1 + length(perm_specificity))
-      #p_importance <- (1 + sum(perm_importance >= TARS$GeneRiskScore)) / (1 + length(perm_importance))
-      #p_regulon <- (1 + sum(perm_regulon >= TARS$RegulonScore)) / (1 + length(perm_regulon))
+      p_specificity <- (1 + sum(perm_specificity >= TARS$SpecificityScore)) / (1 + length(perm_specificity))
+      p_importance <- (1 + sum(perm_importance >= TARS$GeneRiskScore)) / (1 + length(perm_importance))
+      p_regulon <- (1 + sum(perm_regulon >= TARS$RegulonScore)) / (1 + length(perm_regulon))
 
+      # Compute z-scores for each regulon
       z_specificity <- if (sd(perm_specificity) == 0) NA else (TARS$SpecificityScore - mean(perm_specificity)) / sd(perm_specificity)
       z_importance <- if (sd(perm_importance) == 0) NA else (TARS$GeneRiskScore - mean(perm_importance)) / sd(perm_importance)
       z_regulon <- if (sd(perm_regulon) == 0) NA else (TARS$RegulonScore - mean(perm_regulon)) / sd(perm_regulon)
@@ -176,11 +164,11 @@ regulon2disease <- function(grn_outputs,
           RegulonID = paste0("Regulon_", j),
           RegulonName = Module_regulon[1],
           SpecificityScore = z_specificity,
-          #SpecificityScore_p = p_specificity,
+          SpecificityScore_p = p_specificity,
           GeneRiskScore = z_importance,
-          #ImportanceWeightScore_p = p_importance,
+          ImportanceWeightScore_p = p_importance,
           RegulonScore = z_regulon,
-          #RegulonScore_p = p_regulon,
+          RegulonScore_p = p_regulon,
           Celltype = all_celltype_names[i]
         )
       )
@@ -191,20 +179,8 @@ regulon2disease <- function(grn_outputs,
     }
   }
 
-  # Compute p-values and z-scores after all permutations
-  message("Step 4.4: Calculating p-values and z-scores...")
-  all_regulon_results_df$SpecificityScore_p <- (1 + sum(perm_specificity_all >= all_regulon_results_df$SpecificityScore)) / (1 + length(perm_specificity_all))
-  all_regulon_results_df$ImportanceWeightScore_p <- (1 + sum(perm_importance_all >= all_regulon_results_df$GeneRiskScore)) / (1 + length(perm_importance_all))
-  all_regulon_results_df$RegulonScore_p <- (1 + sum(perm_regulon_all >= all_regulon_results_df$RegulonScore)) / (1 + length(perm_regulon_all))
-
-
-  # Close progress bar and record running time
-  close(pb)
-  end_time <- Sys.time()
-  cat("Running time:", round(difftime(end_time, start_time, units = "secs"), 2), "seconds\n")
-
-  # Step 4.4 Add significance column
-  message("Step 4.4: Adding Significance column...")
+  # Step 4.5 Add significance column
+  message("Step 4.5: Adding Significance column...")
   all_regulon_results_df$Significance <- ifelse(
     all_regulon_results_df$SpecificityScore_p < p1 &
       all_regulon_results_df$ImportanceWeightScore_p < p2 &
@@ -212,6 +188,11 @@ regulon2disease <- function(grn_outputs,
     "Significant",
     "Nonsignificant"
   )
+
+  # Close progress bar and record running time
+  close(pb)
+  end_time <- Sys.time()
+  cat("Running time:", round(difftime(end_time, start_time, units = "secs"), 2), "seconds\n")
 
   return(all_regulon_results_df)
 }
