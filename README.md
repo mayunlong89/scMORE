@@ -91,14 +91,14 @@ Idents(single_cell) <- single_cell$cell_type
 
 ### Example input format
 
-```
-1) Single-cell data
+```r
+#1) Single-cell data
 
 The input format of single-cell data: Seurat-generated S4 object.
 
 scMORE is fully compatiable with Seurat, a widely-used single-cell analysis tool.
 
-2) snp_info (GWAS summary statistics)
+#2) snp_info (GWAS summary statistics)
 CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	49298	0.003358	0.011295	0.115634	0.823742	35253	rs10399793
 1	54712	0.045321	0.044239	0.514848	0.010379	35253	rs573184866
@@ -120,7 +120,7 @@ CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	565490	0.005166	0.019022	0.104616	0.059681	35253	rs7349153
 1	566024	-0.013942	0.032681	0.174126	0.020699	35253	rs6421779
 
-3) gene_info (MAGMA results)
+#3) gene_info (MAGMA results)
 GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT            P
 148398       1     854993     884961     76      20  482730       0.7726      0.21988
 26155        1     874583     899679     58      13  482730       0.4058      0.34244
@@ -141,7 +141,7 @@ GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT        
 118424       1    1184292    1214234     82      14  482730      0.30781      0.37911
 6339         1    1210816    1232409     69      19  482730       -1.267      0.89742
 
-4) gene_info (FUMA results)
+#4) gene_info (FUMA results)
 GENE	CHR	START	STOP	NSNPS	NPARAM	N	ZSTAT	P	SYMBOL
 ENSG00000237683	1	134901	139379	6	4	171643	0.12078	0.45193	AL627309.1
 ENSG00000269831	1	738532	739137	4	2	171643	0.52502	0.29979	AL669831.1
