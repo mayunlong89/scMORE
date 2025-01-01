@@ -89,7 +89,7 @@ Idents(single_cell) <- single_cell$cell_type
 ```
 
 
-### Example format
+### Example input format
 
 ```
 1) Single-cell data
