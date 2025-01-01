@@ -16,42 +16,29 @@ We recommend installing scMORE via Github using devtools:
 # install.packages("devtools")
 devtools::install_github("mayunlong89/scMORE")
 ```
-See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
-
-You can install the old version of scMORE from
+See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes. You can install the old version of scMORE from
 [GitHub](https://github.com/mayunlong89/ctDRTF).
 
 
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
+## How to run scMORE
+```r
 library(scMORE)
-## basic example code
+
+scMore(single_cell,
+       snp_info,
+       gene_info,
+       n_targets = 5,
+       perm_n = 1000,
+       theta = 0.5,
+       alpha = 1,
+       buffer = 500,
+       top_n = 5,
+       p1 = 0.05,
+       p2 = 0.05,
+       p3 = 0.05,
+       nSeed = 1234)
+
+
+
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
