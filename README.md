@@ -61,13 +61,14 @@ scMore(single_cell,
 ```
 
 
-| Function                           | Description                                                                                                                 |
+| Functions                           | Description                                                                                                                 |
 |------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | `scMore()`                         | The main function to fit the model for identifying cell type-specific regulons relevant to traits       |
-| `createRegulon()`                   Construct global TF-gene regulotory network using multimodal single-cell measurements                    |
-| `COSR_pre_func()`                  | Calculate the cell type-level specificity score of each gene or TF using the cosine similarity algorithm                    |
-| `COSR_func_weight()`               | Identify cell type-specific regulons relevant to disease using polygenic enrichment method                                  |
-| `MC_JSI_score_func_weight()`       | Calculate the empirical P value for each regulon-disease association using Monote Carlo permutation algorithm               |
+| `createRegulon()`                  | Construct global TF-gene regulotory network using multimodal single-cell measurements                    |
+| `getSpecificity()`                 | Calculate the cell type-level specificity score of each gene or TF using the cosine similarity algorithm                    |
+| `getGeneScore()`                   | Extract and format gene-based genetic association results from MAGMA or FUMA                                 |
+| `regulon2disease()`                | Identify regulons relevant to disease by integrating GWAS-derived gene relevance scores (GRS) and cell type-specificity scores (CTS)     |
+| `peak2gene()`                      | Link genes to genomic peaks |
 | `max_min_scale()`                  | Scale the specificity score between 0 and 1 across all cells                                                                |
 
 
