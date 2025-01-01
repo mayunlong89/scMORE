@@ -69,7 +69,8 @@ scMore(single_cell,
 | `getSpecificity()`                 | Calculate the cell type-level specificity score of each gene or TF using the cosine similarity algorithm                    |
 | `getGeneScore()`                   | Extract and format gene-based genetic association results from MAGMA or FUMA                                 |
 | `regulon2disease()`                | Identify regulons relevant to disease by integrating GWAS-derived gene relevance scores (GRS) and cell type-specificity scores (CTS)     |
-| `peak2gene()`                      | Link genes to genomic peaks |
+| `peak2gene()`                      | Link genomic peaks to genes |
+| `snp2peak()`                       | Link SNPs to genomic peaks  |
 | `getPeakScore()`                   | Calculate the gene relevance scores (GRS) using the product of peak relevance, peak-gene strength, and gene relevance |
 | `getRiskScore()`                   | Extract the highest peak-gene strength scores for each target (node) |
 | `getRegulonScore()`                | Calculate trait-associated regulon score (TRS) for each regulon |
