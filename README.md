@@ -23,48 +23,23 @@ See the DESCRIPTION file for a complete list of R dependencies. If the R depende
 ## How to run scMORE
 ```r
 
+#load R packages
 library(scMORE)
+library(GenomicRanges)
+library(IRanges)
+library(Seurat)
+library(Signac)
 
-#' @title Single-Cell MultiOmics REgulon discovery (scMORE)
-#'
-#' @description
-#' Main function for identifying disease-relevant regulons using single-cell data.
-#'
-#' @param single_cell The input single-cell data, typically a Seurat or SingleCellExperiment object.
-#' @param snp_info GWAS summary statistics. Must include the following columns:
-#'                 `chr` (chromosome), `pos` (position), `rsID` (SNP ID), `beta` (effect size),
-#'                 and `p-value` (significance level).
-#' @param n_targets Minimum number of target genes required in a given regulon. Default: 5.
-#' @param gene_info Gene-based genetic association results from MAGMA or FUMA.
-#'                  The function supports results in standard MAGMA/FUMA formats.
-#' @param perm_n Number of Monte Carlo permutations to perform for significance testing. Default: 1000.
-#' @param theta Weighting factor to adjust the specificity score of target genes within each regulon.
-#'              Range: 0.1 to 1. Default: 0.5.
-#' @param alpha Flexibility parameter for penalization in the inference model. Default: 1.
-#' @param buffer Numeric value specifying the flanking region size for genomic peaks.
-#'               Extends the peak range upstream and downstream. For example, `buffer = 500`
-#'               extends 500 bp on both sides of a peak. Default: 500 bp.
-#' @param p1 Threshold for statistical significance of the cell type-specificity score
-#'           for each regulon. Default: 0.05.
-#' @param p2 Threshold for statistical significance of the genetic risk score
-#'           for each regulon. Default: 0.05.
-#' @param p3 Threshold for statistical significance of the trait-associated regulon score (TARS).
-#'           Default: 0.05.
-#' @param peak2gene_method Method for mapping peaks to genes. Options: `'Signac'` or `'GREAT'`.
-#' @param infer_method Method for inference modeling. Options:
-#'                     - Generalized Linear Models (`'glm'`)
-#'                     - Regularized GLMs (`'glmnet'`, `'cv.glmnet'`)
-#'                     - Bayesian regression models (`'brms'`).
-#' @param top_n Number of top targets for each TF used to calculate its importance. Default: 5.
-#' @param nSeed Random seed for reproducibility (i.e., `set.seed()`). Default: 1234.
-#'
-#' @return A list containing:
-#'         - Disease-relevant regulons
-#'         - Their genetic and cell-type associations
-#'
-#' @export
-#'
+#load single-cell data
+single_cell <- readRDS("10X_PBMC_downsample_2000cells.rds")
 
+#load GWAS summary data
+snp_info <- read.csv("lymphocyte_count_maf0.01.txt",header=T,sep = "\t",stringsAsFactors = FALSE)
+
+#load gene-level association results from MAGMA or FUMA
+gene_info <- read.table("lymp_count_processed_magma_results.genes.out",header = TRUE)
+
+#run scMORE 
 scMore(single_cell,
        snp_info,
        gene_info,
@@ -78,7 +53,6 @@ scMore(single_cell,
        p2 = 0.05,
        p3 = 0.05,
        nSeed = 1234)
-
 
 
 ```
