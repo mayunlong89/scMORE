@@ -16,8 +16,12 @@ We recommend installing scMORE via Github using devtools:
 # install.packages("devtools")
 devtools::install_github("mayunlong89/scMORE")
 ```
+See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
+
 You can install the old version of scMORE from
-[GitHub](https://github.com/mayunlong89/ctDRTF)
+[GitHub](https://github.com/mayunlong89/ctDRTF).
+
+
 
 ## Example
 
