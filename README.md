@@ -83,3 +83,15 @@ scMore(single_cell,
 
 ```
 
+
+| Function                           | Description                                                                                                                 |
+|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `scMore()`                         | The main function to fit the model for identifying cell type-specific regulons relevant to traits       |
+| `createRegulon()`                   Construct global TF-gene regulotory network using multimodal single-cell measurements                    |
+| `COSR_pre_func()`                  | Calculate the cell type-level specificity score of each gene or TF using the cosine similarity algorithm                    |
+| `COSR_func_weight()`               | Identify cell type-specific regulons relevant to disease using polygenic enrichment method                                  |
+| `MC_JSI_score_func_weight()`       | Calculate the empirical P value for each regulon-disease association using Monote Carlo permutation algorithm               |
+| `max_min_scale()`                  | Scale the specificity score between 0 and 1 across all cells                                                                |
+
+
+
