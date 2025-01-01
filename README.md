@@ -10,13 +10,14 @@ scMORE is designed to identify disease-relevant regulons by leveraging GWAS summ
 
 ## Installation
 
-You can install the development version of scMORE from
-[GitHub]([https://github.com/](https://github.com/mayunlong89/ctDRTF)) with:
+We recommend installing scMORE via Github using devtools:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("mayunlong89/scMORE")
 ```
+You can install the old version of scMORE from
+[GitHub](https://github.com/mayunlong89/ctDRTF)
 
 ## Example
 
