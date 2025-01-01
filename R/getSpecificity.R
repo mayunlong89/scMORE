@@ -2,7 +2,7 @@
 #' @title get specificity in each cell type
 #'
 #' @description
-#' Calculate specificity scores of TFs and target genes across all cell types
+#' Calculate specificity scores (CTS) of TFs and target genes across all cell types
 #'
 #' @param single_cell Input single-cell data (Seurat object)
 #' @return A data frame with columns:
@@ -40,11 +40,11 @@ getSpecificity <- function(single_cell) {
 
   # Step 4: Replace specificity scores of -1 with 0
   target_scores$scores[target_scores$scores == -1] <- 0
-  
+
   # log10-transformation and max-min scale the target specificity score
   target_scores$scores <- log10(target_scores$scores + 1e-6)
-  target_scores$scores <- max_min_scale(target_scores$scores) 
-  
+  target_scores$scores <- max_min_scale(target_scores$scores)
+
   # Step 5: Return the final data frame
   return(target_scores)
 }

@@ -1,8 +1,8 @@
 #' @title Identify Cell Type-Specific Regulons Relevant to Disease
 #'
 #' @description
-#' Function to identify cell type-specific regulons that are associated with disease by integrating
-#' TF-gene relationships, cell type specificity scores, and genetic risk scores.
+#' Function to identify cell type-specific regulons (TRS) that are associated with disease by integrating
+#' cell type specificity scores(CTS) and genetic relevance scores (GRS).
 #'
 #' @param grn_outputs GRN (Gene Regulatory Network) outputs containing TF-gene relationships.
 #' @param target_scores A matrix of genes and their TF specificity scores across cell types.
@@ -22,17 +22,17 @@
 #' @param buffer Numeric value specifying the flanking region size for genomic peaks.
 #'               Extends the peak range upstream and downstream by the specified value.
 #'               For example, `buffer = 500` adds 500 bp on both sides of a peak. Default: 500 bp.
-#' @param p1 Threshold for statistical significance of the cell type-specificity score
+#' @param p1 Threshold for statistical significance of the cell type-specificity score (CTS)
 #'           for each regulon. Default: 0.05.
-#' @param p2 Threshold for statistical significance of the genetic risk score
+#' @param p2 Threshold for statistical significance of the genetic relevance score (GRS)
 #'           for each regulon. Default: 0.05.
-#' @param p3 Threshold for statistical significance of the trait-associated regulon score (TARS).
+#' @param p3 Threshold for statistical significance of the trait-associated regulon score (TRS).
 #'           Default: 0.05.
 #'
 #' @return A data frame containing the following:
-#'         - `specificity`: Cell type-specificity scores for each regulon.
-#'         - `genetic_risk_score`: Genetic risk scores for each regulon.
-#'         - `regulon_score`: Trait-associated regulon scores (TARS).
+#'         - `specificity`: Cell type-specificity scores for each regulon (CTS).
+#'         - `genetic_risk_score`: Genetic relevance scores for each regulon (GRS).
+#'         - `regulon_score`: Trait-associated regulon scores (TRS).
 #'         - `p_values`: Statistical significance values for specificity, risk, and regulon scores.
 #'
 #' @export
@@ -113,8 +113,8 @@ regulon2disease <- function(grn_outputs,
         eachModule_Importance_score$Target
       )]
 
-      # Compute regulon scores (TARS)
-      TARS <- getRegulonScore(each_module_score, theta = theta, alpha = alpha)
+      # Compute regulon scores (TRS)
+      TRS <- getRegulonScore(each_module_score, theta = theta, alpha = alpha)
 
       # Run Monte Carlo (MC) permutation analysis
       len_of_regulon <- length(Module_regulon)
@@ -148,14 +148,14 @@ regulon2disease <- function(grn_outputs,
       perm_regulon <- perm_regulon[!is.na(perm_regulon)]
 
       # Calculate p-values and z-scores
-      p_specificity <- (1 + sum(perm_specificity >= TARS$SpecificityScore)) / (1 + length(perm_specificity))
-      p_importance <- (1 + sum(perm_importance >= TARS$GeneRiskScore)) / (1 + length(perm_importance))
-      p_regulon <- (1 + sum(perm_regulon >= TARS$RegulonScore)) / (1 + length(perm_regulon))
+      p_specificity <- (1 + sum(perm_specificity >= TRS$SpecificityScore)) / (1 + length(perm_specificity))
+      p_importance <- (1 + sum(perm_importance >= TRS$GeneRiskScore)) / (1 + length(perm_importance))
+      p_regulon <- (1 + sum(perm_regulon >= TRS$RegulonScore)) / (1 + length(perm_regulon))
 
       # Compute z-scores for each regulon
-      z_specificity <- if (sd(perm_specificity) == 0) NA else (TARS$SpecificityScore - mean(perm_specificity)) / sd(perm_specificity)
-      z_importance <- if (sd(perm_importance) == 0) NA else (TARS$GeneRiskScore - mean(perm_importance)) / sd(perm_importance)
-      z_regulon <- if (sd(perm_regulon) == 0) NA else (TARS$RegulonScore - mean(perm_regulon)) / sd(perm_regulon)
+      z_specificity <- if (sd(perm_specificity) == 0) NA else (TRS$SpecificityScore - mean(perm_specificity)) / sd(perm_specificity)
+      z_importance <- if (sd(perm_importance) == 0) NA else (TRS$GeneRiskScore - mean(perm_importance)) / sd(perm_importance)
+      z_regulon <- if (sd(perm_regulon) == 0) NA else (TRS$RegulonScore - mean(perm_regulon)) / sd(perm_regulon)
 
       # Append results to the data frame
       all_regulon_results_df <- rbind(

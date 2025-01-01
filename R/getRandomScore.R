@@ -2,7 +2,7 @@
 #'
 #' This function generates random regulon scores for a given set of transcription factors (TFs),
 #' target gene background scores, and real specificity/importance scores. It computes three scores:
-#' SpecificityScore (M1), ImportanceWeightScore (M2), and the final RegulonScore, which includes a penalty term.
+#' SpecificityScore (M1, CTS), ImportanceWeightScore (M2,GRS), and the final RegulonScore (TRS), which includes a penalty term.
 #'
 #' @param tf_list A vector of transcription factors (TFs) to randomly select from.
 #' @param target_scores_background A data frame containing background scores for target genes.
