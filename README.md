@@ -19,7 +19,7 @@ We recommend installing scMORE via Github using devtools:
 # install.packages("devtools")
 devtools::install_github("mayunlong89/scMORE")
 ```
-See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes. You can install the old version of scMORE from
+See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes. You can find the old version from
 [GitHub](https://github.com/mayunlong89/ctDRTF).
 
 
@@ -89,16 +89,16 @@ Idents(single_cell) <- single_cell$cell_type
 ```
 
 
-### Example format
+### Example input format
 
-```
-1) Single-cell data
+```r
+#1) Single-cell data
 
 The input format of single-cell data: Seurat-generated S4 object.
 
 scMORE is fully compatiable with Seurat, a widely-used single-cell analysis tool.
 
-2) snp_info (GWAS summary statistics)
+#2) snp_info (GWAS summary statistics)
 CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	49298	0.003358	0.011295	0.115634	0.823742	35253	rs10399793
 1	54712	0.045321	0.044239	0.514848	0.010379	35253	rs573184866
@@ -120,7 +120,7 @@ CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	565490	0.005166	0.019022	0.104616	0.059681	35253	rs7349153
 1	566024	-0.013942	0.032681	0.174126	0.020699	35253	rs6421779
 
-3) gene_info (MAGMA results)
+#3) gene_info (MAGMA results)
 GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT            P
 148398       1     854993     884961     76      20  482730       0.7726      0.21988
 26155        1     874583     899679     58      13  482730       0.4058      0.34244
@@ -141,7 +141,7 @@ GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT        
 118424       1    1184292    1214234     82      14  482730      0.30781      0.37911
 6339         1    1210816    1232409     69      19  482730       -1.267      0.89742
 
-4) gene_info (FUMA results)
+#4) gene_info (FUMA results)
 GENE	CHR	START	STOP	NSNPS	NPARAM	N	ZSTAT	P	SYMBOL
 ENSG00000237683	1	134901	139379	6	4	171643	0.12078	0.45193	AL627309.1
 ENSG00000269831	1	738532	739137	4	2	171643	0.52502	0.29979	AL669831.1
@@ -196,12 +196,9 @@ $MAGMA_DIR/magma \
 
 
 2) Processing MAGMA-results: 'magma.genes.out'
-#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
-#header of MAGMA_GWAS_data: SYMBOL, logP, ZSTAT
-
+#gene_info
 magma_results <- read.table("magma.genes.out",header = TRUE)
-magma_results <- magma_results %>% mutate(logP = -log10(P)) %>% arrange(desc(logP))
-MAGMA_GWAS_data <- magma_results[,c(10,11,8)]
+
 
 
 ```
@@ -211,7 +208,7 @@ MAGMA_GWAS_data <- magma_results[,c(10,11,8)]
 
 
 ### Citations
-Ma et al., scMORE uncovers cellular context-specific regulomes linked to complex diseases by integrating polygenic signals and single-cell multiomics, `under review` 2025
+Ma et al., scMORE uncovers cellular context-specific regulomes linked to complex diseases by integrating polygenic signals and single-cell multiomics, `In submission` 2025
 
 
 
@@ -219,12 +216,11 @@ Ma et al., scMORE uncovers cellular context-specific regulomes linked to complex
 Human organoids are advanced three-dimensional structures that accurately recapitulate key characteristics of human organ development and functions. Unlike two-dimensional cultures lacking critical cell-cell communications, organoids provides a powerful model for recovering complex cellular dynamics involved in developmental and homeostatic processes. Organoids also allow genetic and pharmacological manipulation in a more physiologically relevant context compared to animal models. Although single-cell sequencing advancements have accelerated their biological and therapeutic use, there has been no systematic platform for unified processing and analysis of organoid-based single-cell multiomics data. 
 
 We thus established scHOB (single-cell Human Organoid Bank), a multi-omic single-cell database, consisting of both scRNA-seq and scATAC-seq data on 10 types of widely-adopted human organoids (i.e., brain, lung, heart, eye, liver & bile duct, pancreas, intestine, kidney, and skin) spanning more than 1.5 million cells with 67 main cell types in 385 samples across 83 distinct protocols. see [Github code](https://github.com/mayunlong89/scHOB/tree/main); see [scHOB Website](https://schob.su-lab.org/).
-The single-cell multiome data in scHOB have been used by ctDRTF, see Ma et al. Translational Psychiatry, 2024.
 
 
 ### Application examples:
 1. Ma et al., Integration of human organoids single-cell transcriptomic profiles and human genetics repurposes critical cell type-specific drug targets for severe COVID-19. [Cell Proliferation](https://onlinelibrary.wiley.com/doi/full/10.1111/cpr.13558),2024, and see related [Github codes](https://github.com/mayunlong89/scHuman_organoids_COVID19).
-2. Ma et al., Sytematic dissection of pleiotropic loci and critical regulons in exhibitory neurons and microglia relevant to neuropsychiatric and ocular diseases, Translational Psychiatry, 2025. preprint version see: [Research Square](https://www.researchsquare.com/article/rs-4514542/v1), 2024.
+2. Ma et al., Sytematic dissection of pleiotropic loci and critical regulons in exhibitory neurons and microglia relevant to neuropsychiatric and ocular diseases, `Translational Psychiatry`, 2025. preprint version see: [Research Square](https://www.researchsquare.com/article/rs-4514542/v1), 2024.
 
 
 ### Other references:
