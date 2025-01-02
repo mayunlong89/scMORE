@@ -3,7 +3,7 @@
 #' @description
 #' Calculate specificity scores (CTS) of TFs and target genes across all cell types.
 #' @param single_cell Input single-cell data (Seurat object)
-#' @param specificity_method Method used for calculating the cell type specificity of nodes (TFs or genes):
+#' @param method Method used for calculating the cell type specificity of nodes (TFs or genes):
 #'        'cosine' (default) or 'average'.
 #' @return A data frame with columns:
 #'         - genes: Gene or TF names
@@ -11,7 +11,7 @@
 #'         - celltypes: Cell type names
 #' @export
 #'
-getSpecificity <- function(single_cell, specificity_method = 'cosine') {
+getSpecificity <- function(single_cell, method = 'cosine') {
   # Step 1: Initialize variables
   num_genes <- nrow(single_cell) # Total number of genes in the dataset
   target_scores <- data.frame(genes = character(), scores = numeric(), celltypes = character(), stringsAsFactors = FALSE)
