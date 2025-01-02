@@ -2,7 +2,7 @@
 % Please edit documentation in R/scMore.R
 \name{scMore}
 \alias{scMore}
-\title{Single-Cell MultiOmics REgulon discovery (scMORE)}
+\title{Single-Cell MultiOmics Regulon Enrichment (scMORE)}
 \usage{
 scMore(
   single_cell,
