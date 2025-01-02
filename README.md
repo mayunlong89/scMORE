@@ -55,7 +55,7 @@ scMore(single_cell,
        p1 = 0.05,
        p2 = 0.05,
        p3 = 0.05,
-       specificity_method = 'cosine',
+       method = 'cosine',
        nSeed = 1234)
 
 
