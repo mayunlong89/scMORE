@@ -1,40 +1,37 @@
-#'
-#' @title calcaulte Euclidean distance
+#' @title Compute Euclidean Distances Between Target and Non-Target Scores
 #' @description
-#' Define a function to calculate pairwise distances
-#'
-#' @param regulon_set1 regulons' scMORE score in target cell type
-#' @param regulon_set2 regulons' scMORE score in other cell types
+#' This function calculates the Euclidean distances between Target and NonTarget scores
+#' from the input dataset, as well as the within distances for each group.
+#' @param target_results A data frame with three columns: RegulonName, Target, and NonTarget.
+#' @return A list containing:
+#'         - `between`: Pairwise distances between Target and NonTarget.
+#'         - `within_target`: Pairwise distances within the Target group.
+#'         - `within_nontarget`: Pairwise distances within the NonTarget group.
 #' @export
+getDistances <- function(target_results) {
+  # Step 1: Separate Target and NonTarget scores
+  regulon_set1 <- data.frame(value = target_results$Target)
+  regulon_set2 <- data.frame(value = target_results$NonTarget)
 
-getDistances <- function(regulon_set1, regulon_set2) {
-  # Combine the two datasets (regulon_set1 and regulon_set2) and compute the distance matrix
-  # `dist()` calculates pairwise distances, and `as.matrix()` converts it into a matrix
-  dist_matrix <- as.matrix(dist(rbind(regulon_set1, regulon_set2)))
+  # Step 2: Combine the two datasets for distance calculation
+  combined_data <- rbind(regulon_set1, regulon_set2)
 
-  # Get the number of rows (observations) in each dataset
-  n1 <- nrow(regulon_set1)  # Number of points in the first dataset
-  n2 <- nrow(regulon_set2)  # Number of points in the second dataset
+  # Step 3: Compute the distance matrix
+  dist_matrix <- as.matrix(dist(combined_data))
 
-  # Extract pairwise distances between points from the two datasets
-  # These are distances between every point in `regulon_set1` and every point in `regulon_set2`
-  dist_between <- dist_matrix[1:n1, (n1 + 1):(n1 + n2)]
+  # Step 4: Get the number of rows in each dataset
+  n1 <- nrow(regulon_set1)  # Number of points in the Target group
+  n2 <- nrow(regulon_set2)  # Number of points in the NonTarget group
 
-  # Extract pairwise distances within the first dataset
-  # These are distances between every pair of points in `regulon_set1`
-  dist_within1 <- dist_matrix[1:n1, 1:n1]
+  # Step 5: Extract pairwise distances
+  dist_between <- dist_matrix[1:n1, (n1 + 1):(n1 + n2)]  # Between Target and NonTarget
+  dist_within_target <- dist_matrix[1:n1, 1:n1]          # Within Target group
+  dist_within_nontarget <- dist_matrix[(n1 + 1):(n1 + n2), (n1 + 1):(n1 + n2)]  # Within NonTarget group
 
-  # Extract pairwise distances within the second dataset
-  # These are distances between every pair of points in `regulon_set2`
-  dist_within2 <- dist_matrix[(n1 + 1):(n1 + n2), (n1 + 1):(n1 + n2)]
-
-  # Return a list containing all three distance matrices:
-  # - `between`: Pairwise distances between `regulon_set1` and `regulon_set2`
-  # - `within1`: Pairwise distances within `regulon_set1`
-  # - `within2`: Pairwise distances within `regulon_set2`
+  # Step 6: Return the distances as a list
   list(
     between = dist_between,
-    within1 = dist_within1,
-    within2 = dist_within2
+    within_target = dist_within_target,
+    within_nontarget = dist_within_nontarget
   )
 }

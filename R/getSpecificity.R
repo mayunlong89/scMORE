@@ -17,7 +17,7 @@ getSpecificity <- function(single_cell, method = 'cosine') {
   target_scores <- data.frame(genes = character(), scores = numeric(), celltypes = character(), stringsAsFactors = FALSE)
 
   # Step 2: Calculate specificity scores based on the selected method
-  if (specificity_method == 'cosine') {
+  if (method == 'cosine') {
     # Using COSG for cosine similarity-based specificity
     celltype_markers <- COSG::cosg(
       single_cell,
@@ -40,10 +40,10 @@ getSpecificity <- function(single_cell, method = 'cosine') {
       )
     }))
 
-  } else if (specificity_method == 'average') {
+  } else if (method == 'average') {
     # Calculate average-based specificity scores
     all_celltype_names <- as.vector(unique(Idents(single_cell))) # Extract cell type names
-    celltype_averages <- AverageExpression(single_cell)$RNA # Average expression values
+    celltype_averages <- as.data.frame(AverageExpression(single_cell)$RNA) # Average expression values
 
     for (celltype in all_celltype_names) {
       temp <- data.frame(
