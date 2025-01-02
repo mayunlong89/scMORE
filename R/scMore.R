@@ -10,6 +10,8 @@
 #' @param n_targets Minimum number of target genes required in a given regulon. Default: 5.
 #' @param gene_info Gene-based genetic association results from MAGMA or FUMA.
 #'                  The function supports results in standard MAGMA/FUMA formats.
+#' @param specificity_method Method used for calculating the cell type specificity of nodes (TFs or genes):
+#'        'cosine' (default) or 'average'.
 #' @param perm_n Number of Monte Carlo permutations to perform for significance testing. Default: 1000.
 #' @param theta Weighting factor to adjust the specificity score of target genes within each regulon.
 #'              Range: 0.1 to 1. Default: 0.5.
@@ -49,6 +51,7 @@ scMore <- function(single_cell,
                    p1 = 0.05,
                    p2 = 0.05,
                    p3 = 0.05,
+                   specificity_method = 'cosine',
                    nSeed = 1234) {
 
   # Set random seed for reproducibility
