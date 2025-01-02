@@ -1,4 +1,4 @@
-#' @title Single-Cell MultiOmics REgulon discovery (scMORE)
+#' @title Single-Cell MultiOmics Regulon Enrichment (scMORE)
 #'
 #' @description
 #' Main function for identifying disease-relevant regulons using single-cell data.

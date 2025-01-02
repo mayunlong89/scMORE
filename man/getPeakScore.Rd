@@ -2,7 +2,7 @@
 % Please edit documentation in R/getPeakScore.R
 \name{getPeakScore}
 \alias{getPeakScore}
-\title{Calculate the weighted importance score for each peak}
+\title{Calculate the weighted importance score for each peak-gene}
 \usage{
 getPeakScore(snp2peak_map)
 }
@@ -14,7 +14,7 @@ Must contain columns 'snp_id', 'Significance', 'Strength', and 'geneScores'.}
 A data frame where missing values are replaced and an 'Importance_weighted' column is added.
 }
 \description{
-Replace missing values (NA) and calculate weighted importance scores for peaks.
+Replace missing values (NA) and calculate weighted importance scores (GRS) for peaks.
 }
 \details{
 \itemize{

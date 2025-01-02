@@ -16,5 +16,5 @@ A data frame with columns:
 - celltypes: Cell type names
 }
 \description{
-Calculate specificity scores of TFs and target genes across all cell types
+Calculate specificity scores (CTS) of TFs and target genes across all cell types
 }

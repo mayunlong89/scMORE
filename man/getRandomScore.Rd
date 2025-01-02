@@ -46,5 +46,5 @@ A list containing the following elements:
 \description{
 This function generates random regulon scores for a given set of transcription factors (TFs),
 target gene background scores, and real specificity/importance scores. It computes three scores:
-SpecificityScore (M1), ImportanceWeightScore (M2), and the final RegulonScore, which includes a penalty term.
+SpecificityScore (M1, CTS), ImportanceWeightScore (M2,GRS), and the final RegulonScore (TRS), which includes a penalty term.
 }

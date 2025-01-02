@@ -47,23 +47,23 @@ Columns include:
 Extends the peak range upstream and downstream by the specified value.
 For example, \code{buffer = 500} adds 500 bp on both sides of a peak. Default: 500 bp.}
 
-\item{p1}{Threshold for statistical significance of the cell type-specificity score
+\item{p1}{Threshold for statistical significance of the cell type-specificity score (CTS)
 for each regulon. Default: 0.05.}
 
-\item{p2}{Threshold for statistical significance of the genetic risk score
+\item{p2}{Threshold for statistical significance of the genetic relevance score (GRS)
 for each regulon. Default: 0.05.}
 
-\item{p3}{Threshold for statistical significance of the trait-associated regulon score (TARS).
+\item{p3}{Threshold for statistical significance of the trait-associated regulon score (TRS).
 Default: 0.05.}
 }
 \value{
 A data frame containing the following:
-- \code{specificity}: Cell type-specificity scores for each regulon.
-- \code{genetic_risk_score}: Genetic risk scores for each regulon.
-- \code{regulon_score}: Trait-associated regulon scores (TARS).
+- \code{specificity}: Cell type-specificity scores for each regulon (CTS).
+- \code{genetic_risk_score}: Genetic relevance scores for each regulon (GRS).
+- \code{regulon_score}: Trait-associated regulon scores (TRS).
 - \code{p_values}: Statistical significance values for specificity, risk, and regulon scores.
 }
 \description{
-Function to identify cell type-specific regulons that are associated with disease by integrating
-TF-gene relationships, cell type specificity scores, and genetic risk scores.
+Function to identify cell type-specific regulons (TRS) that are associated with disease by integrating
+cell type specificity scores(CTS) and genetic relevance scores (GRS).
 }
