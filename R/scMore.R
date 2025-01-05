@@ -23,7 +23,7 @@
 #'           for each regulon. Default: 0.05.
 #' @param p2 Threshold for statistical significance of the genetic risk score
 #'           for each regulon. Default: 0.05.
-#' @param p3 Threshold for statistical significance of the trait-associated regulon score (TARS).
+#' @param p3 Threshold for statistical significance of the trait-associated regulon score (TRS).
 #'           Default: 0.05.
 #' @param peak2gene_method Method for mapping peaks to genes. Options: `'Signac'` or `'GREAT'`.
 #' @param infer_method Method for inference modeling. Options:
