@@ -50,3 +50,17 @@ saveRDS(single_cell, file = "10X_pbmc_400cells.rds")
 
 
 ```
+
+## Single_cell object
+```r
+> single_cell
+An object of class Seurat 
+134520 features across 400 samples within 2 assays 
+Active assay: RNA (22815 features, 2000 variable features)
+ 3 layers present: counts, data, scale.data
+ 1 other assay present: peaks
+ 7 dimensional reductions calculated: pca, umap.rna, lsi, umap.atac, umap.biMod, tsne.biMod, umap.new
+
+```
+
+
