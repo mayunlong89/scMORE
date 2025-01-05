@@ -6,44 +6,48 @@
 This dataset contains 400 cells, with 200 monocytes and 200 CD8+T cells, used for example learning.
 
 ```r
-## codes for visualizing example single-cell data
-#load data on 10x pbmc example data
-#Load scMultiomic data
+# Load 10x PBMC scMultiomic data
 pbmc_10x <- readRDS("/Users/mayunlong/Desktop/WMU2024/ctDRTF-codes and data/scHBO/10X_PBMC/10X_PBMC.rds")
 single_cell_10x <- pbmc_10x
-Idents(single_cell_10x) <- single_cell_10x$cell_type
 
-cell_type2<- as.character(single_cell_10x$cell_type)
-cell_type2[which(cell_type2 %in% c("CD14+ Monocytes","FCGR3A+ Monocytes"))] <- "Monocytes"
+# Update cell type identities
+Idents(single_cell_10x) <- single_cell_10x$cell_type
+cell_type2 <- as.character(single_cell_10x$cell_type)
+# Combine "CD14+ Monocytes" and "FCGR3A+ Monocytes" into "Monocytes"
+cell_type2[which(cell_type2 %in% c("CD14+ Monocytes", "FCGR3A+ Monocytes"))] <- "Monocytes"
 single_cell_10x$cell_type2 <- cell_type2
 
+# Subset to include only Monocytes and CD8+ T cells
+pbmc_10x_real_data <- subset(single_cell_10x, idents = c("Monocytes", "CD8+ T cells"))
 
-#subset cells of two cell types
-pbmc_10x_real_data <- subset(single_cell_10x,idents=c("Monocytes","CD8+ T cells"))
-#downsample cell list
-cell.list <- WhichCells(pbmc_10x_real_data,idents = c("Monocytes","CD8+ T cells"),downsample = 1000)
-pbmc_10x_real_data_downsampled_2000 <- pbmc_10x_real_data[,cell.list]
-table(pbmc_10x_real_data_downsampled_2000$cell_type2)
-pbmc_10x_real_data_downsampled_2000 #this real dataset used for assessing ctDRTF performance
+# Downsample to 400 cells per cell type
+cell.list <- WhichCells(pbmc_10x_real_data, idents = c("Monocytes", "CD8+ T cells"), downsample = 400)
+single_cell <- pbmc_10x_real_data[, cell.list]
 
-#re-clustering the UMAP
-pbmc_10x_real_data_downsampled_2000 <- NormalizeData(pbmc_10x_real_data_downsampled_2000)
-pbmc_10x_real_data_downsampled_2000 <- FindVariableFeatures(pbmc_10x_real_data_downsampled_2000)
-pbmc_10x_real_data_downsampled_2000 <- ScaleData(pbmc_10x_real_data_downsampled_2000)
-pbmc_10x_real_data_downsampled_2000 <- RunPCA(pbmc_10x_real_data_downsampled_2000,reduction.name = "pca")
-pbmc_10x_real_data_downsampled_2000 <- FindNeighbors(pbmc_10x_real_data_downsampled_2000,
-                                                     dims = 1:30,reduction = "pca")
-pbmc_10x_real_data_downsampled_2000 <- FindClusters(pbmc_10x_real_data_downsampled_2000,
-                                                    resolution = 0.5)
-#Run UMAP
-pbmc_10x_real_data_downsampled_2000 <- RunUMAP(pbmc_10x_real_data_downsampled_2000, dims = 1:30,
-                                               reduction = "pca",reduction.name = "umap.new")
+# Re-clustering and dimensionality reduction for UMAP
+# Normalize data
+single_cell <- NormalizeData(single_cell)
+# Identify highly variable features
+single_cell <- FindVariableFeatures(single_cell)
+# Scale the data
+single_cell <- ScaleData(single_cell)
+# Perform PCA for dimensionality reduction
+single_cell <- RunPCA(single_cell, reduction.name = "pca")
+# Find neighbors based on PCA dimensions
+single_cell <- FindNeighbors(single_cell, dims = 1:30, reduction = "pca")
+# Find clusters at resolution 0.5
+single_cell <- FindClusters(single_cell, resolution = 0.5)
+# Run UMAP on PCA-reduced data
+single_cell <- RunUMAP(single_cell, dims = 1:30, reduction = "pca", reduction.name = "umap.new")
 
-#Visualization
-Idents(pbmc_10x_real_data_downsampled_2000) <- pbmc_10x_real_data_downsampled_2000$cell_type2
+# Visualization
+# Set identities to the updated cell type labels
+Idents(single_cell) <- single_cell$cell_type2
+# Generate UMAP plot with customized colors
+DimPlot(single_cell, reduction = "umap.new", cols = c("#67ADB7", "#E77A77"))
 
-DimPlot(pbmc_10x_real_data_downsampled_2000, reduction = "umap.new",cols = c("#67ADB7","#E77A77"))
+# Save the processed single-cell data to an RDS file
+saveRDS(single_cell, file = "10X_pbmc_400cells.rds")
 
-saveRDS(single_cell, file="10X_pbmc_400cells.rds")
 
 ```
