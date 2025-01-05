@@ -1,7 +1,7 @@
 
 # This file was used to store figures and examples
 
-## For example of single-cell multiomics data
+## For example of single-cell multiomics dataset (10X_pbmc_400cells.rds)
 
 This dataset contains 400 cells, with 200 monocytes and 200 CD8+T cells, used for example learning.
 
@@ -26,9 +26,6 @@ pbmc_10x_real_data_downsampled_2000 <- pbmc_10x_real_data[,cell.list]
 table(pbmc_10x_real_data_downsampled_2000$cell_type2)
 pbmc_10x_real_data_downsampled_2000 #this real dataset used for assessing ctDRTF performance
 
-
-#DimPlot(pbmc_10x_real_data_downsampled_2000)
-
 #re-clustering the UMAP
 pbmc_10x_real_data_downsampled_2000 <- NormalizeData(pbmc_10x_real_data_downsampled_2000)
 pbmc_10x_real_data_downsampled_2000 <- FindVariableFeatures(pbmc_10x_real_data_downsampled_2000)
@@ -47,9 +44,6 @@ Idents(pbmc_10x_real_data_downsampled_2000) <- pbmc_10x_real_data_downsampled_20
 
 DimPlot(pbmc_10x_real_data_downsampled_2000, reduction = "umap.new",cols = c("#67ADB7","#E77A77"))
 
-single_cell<-pbmc_10x_real_data_downsampled_2000
-
-
-
+saveRDS(single_cell, file="10X_pbmc_400cells.rds")
 
 ```
