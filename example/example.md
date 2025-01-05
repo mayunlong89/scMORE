@@ -7,8 +7,7 @@ This dataset contains 400 cells, with 200 monocytes and 200 CD8+T cells, used fo
 
 ```r
 # Load 10x PBMC scMultiomic data
-pbmc_10x <- readRDS("10X_PBMC.rds")
-single_cell_10x <- pbmc_10x
+single_cell_10x <- readRDS("10X_PBMC.rds")
 
 # Update cell type identities
 Idents(single_cell_10x) <- single_cell_10x$cell_type
