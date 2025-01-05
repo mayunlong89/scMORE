@@ -20,7 +20,7 @@ single_cell_10x$cell_type2 <- cell_type2
 pbmc_10x_real_data <- subset(single_cell_10x, idents = c("Monocytes", "CD8+ T cells"))
 
 # Downsample to 400 cells per cell type
-cell.list <- WhichCells(pbmc_10x_real_data, idents = c("Monocytes", "CD8+ T cells"), downsample = 400)
+cell.list <- WhichCells(pbmc_10x_real_data, idents = c("Monocytes", "CD8+ T cells"), downsample = 200)
 single_cell <- pbmc_10x_real_data[, cell.list]
 
 # Re-clustering and dimensionality reduction for UMAP
