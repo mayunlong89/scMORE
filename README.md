@@ -34,7 +34,7 @@ library(Seurat)
 library(Signac)
 
 #load single-cell data
-single_cell <- readRDS("10X_PBMC_downsample_2000cells.rds")
+single_cell <- readRDS("10X_PBMC_cells.rds")
 
 #load GWAS summary data
 snp_info <- read.csv("lymphocyte_count_maf0.01.txt",header=T,sep = "\t",stringsAsFactors = FALSE)
@@ -229,5 +229,8 @@ We thus established scHOB (single-cell Human Organoid Bank), a multi-omic single
 1. [scPagwas](https://www.cell.com/cell-genomics/pdf/S2666-979X(23)00180-5.pdf)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8137370.svg)](https://doi.org/10.5281/zenodo.8137370)
 
-2. Development of novel polygenic regression method scPagwas for integrating scRNA-seq data with GWAS on complex diseases. see [Ma et al. Cell Genomics, 2023](https://www.cell.com/cell-genomics/fulltext/S2666-979X(23)00180-5), and see related [Github codes](https://github.com/mayunlong89/scPagwas_main)
+2. [scPagwas_py](https://github.com/mayunlong89/scPagwas_py)
+We are preparing to release an upgraded version of scPagwas, named scPagwas2, which introduces enhanced methods for calculating genetically associated genes. By incorporating extensive random calculations, this version offers improved result stability. Additionally, we have addressed issues with synchronizing results across single-cell data and cell-type data. Please note that scPagwas2 requires the use of the scPagwas_main2 function to replace the original scPagwas_main. To accommodate the substantial memory demands of single-cell data calculations in R, we have developed a Python version, scPagwas_py, fully synchronized with scPagwas2.0. We will continue to provide updates to further enhance computational efficiency.
+
+4. Ma et al.,Polygenic regression uncovers trait-relevant cellular contexts through pathway activation transformation of single-cell RNA sequencing data. see [Ma et al. Cell Genomics, 2023](https://www.cell.com/cell-genomics/fulltext/S2666-979X(23)00180-5), and see related [Github codes](https://github.com/mayunlong89/scPagwas_main)
 
