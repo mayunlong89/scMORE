@@ -22,3 +22,12 @@ Successfully installed scikit-learn-<version>
 
 
 ```
+
+
+
+# Open R
+
+```r
+library(reticulate)
+use_virtualenv("~/.virtualenvs/r-reticulate", required = TRUE)
+sklearn <- import("sklearn")
