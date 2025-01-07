@@ -11,7 +11,9 @@
 #' @param gene_info Gene-based genetic association results from MAGMA or FUMA.
 #'                  The function supports results in standard MAGMA/FUMA formats.
 #' @param method Method used for calculating the cell type specificity of nodes (TFs or genes):
-#'        'cosine' (default) or 'average'.
+#'        - 'cosine' (default)
+#'        - 'mean_specificity'
+#'        - 'average'
 #' @param perm_n Number of Monte Carlo permutations to perform for significance testing. Default: 1000.
 #' @param theta Weighting factor to adjust the specificity score of target genes within each regulon.
 #'              Range: 0.1 to 1. Default: 0.5.

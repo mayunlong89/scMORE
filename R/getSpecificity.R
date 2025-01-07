@@ -1,16 +1,16 @@
 #' @title Calculate Cell-Type Specificity Scores of Nodes
-#'
 #' @description
 #' Calculate specificity scores (CTS) of TFs and target genes across all cell types.
 #' @param single_cell Input single-cell data (Seurat object)
 #' @param method Method used for calculating the cell type specificity of nodes (TFs or genes):
-#'        'cosine' (default) or 'average'.
+#'        - 'cosine' (default)
+#'        - 'mean_specificity'
+#'        - 'average'
 #' @return A data frame with columns:
 #'         - genes: Gene or TF names
 #'         - scores: Specificity scores
 #'         - celltypes: Cell type names
 #' @export
-#'
 getSpecificity <- function(single_cell, method = 'cosine') {
   # Step 1: Initialize variables
   num_genes <- nrow(single_cell) # Total number of genes in the dataset
@@ -27,10 +27,7 @@ getSpecificity <- function(single_cell, method = 'cosine') {
       mu = 1,
       n_genes_user = num_genes
     )
-
     all_celltype_names <- colnames(celltype_markers$names) # Extract cell type names
-
-    # Combine specificity scores for all cell types into a single data frame
     target_scores <- do.call(rbind, lapply(all_celltype_names, function(celltype) {
       data.frame(
         genes = celltype_markers$names[[celltype]],
@@ -39,12 +36,9 @@ getSpecificity <- function(single_cell, method = 'cosine') {
         stringsAsFactors = FALSE
       )
     }))
-
   } else if (method == 'average') {
-    # Calculate average-based specificity scores
     all_celltype_names <- as.vector(unique(Idents(single_cell))) # Extract cell type names
     celltype_averages <- as.data.frame(AverageExpression(single_cell)$RNA) # Average expression values
-
     for (celltype in all_celltype_names) {
       temp <- data.frame(
         genes = rownames(celltype_averages),
@@ -54,8 +48,28 @@ getSpecificity <- function(single_cell, method = 'cosine') {
       )
       target_scores <- rbind(target_scores, temp)
     }
+  } else if (method == "mean_specificity") {
+    # Step 1: Calculate the average expression of each gene for each cell type
+    celltype_averages <- as.data.frame(AverageExpression(single_cell)$RNA)
+
+    # Step 2: Add the average expression of each gene across all cell types
+    celltype_averages$Overall_Mean <- rowMeans(celltype_averages, na.rm = TRUE) # Handle NA values
+    celltype_averages$Overall_Mean[celltype_averages$Overall_Mean == 0 | is.na(celltype_averages$Overall_Mean)] <- 1e-6
+
+    # Step 3: Calculate specificity for each cell type
+    specificity <- sweep(celltype_averages[, -ncol(celltype_averages)], 1, celltype_averages$Overall_Mean, "/")
+
+    # Step 4: Convert specificity matrix to long format
+    target_scores <- specificity %>%
+      as.data.frame() %>%
+      tibble::rownames_to_column(var = "genes") %>% # Add gene names as a column
+      tidyr::pivot_longer(
+        cols = -genes, # All columns except "genes"
+        names_to = "celltypes", # Column name for cell types
+        values_to = "scores"    # Column name for specificity scores
+      )
   } else {
-    stop("Invalid specificity_method. Choose 'cosine' or 'average'.")
+    stop("Invalid specificity_method. Choose 'cosine', 'average', or 'mean_specificity'.")
   }
 
   # Step 3: Replace specificity scores of -1 with 0
@@ -63,7 +77,8 @@ getSpecificity <- function(single_cell, method = 'cosine') {
 
   # Step 4: Log10-transformation and max-min scale the specificity scores
   target_scores$scores <- log10(target_scores$scores + 1e-6)
-  target_scores$scores <- (target_scores$scores - min(target_scores$scores)) / (max(target_scores$scores) - min(target_scores$scores))
+  target_scores$scores <- (target_scores$scores - min(target_scores$scores, na.rm = TRUE)) /
+    (max(target_scores$scores, na.rm = TRUE) - min(target_scores$scores, na.rm = TRUE))
 
   # Step 5: Return the final data frame
   return(target_scores)
