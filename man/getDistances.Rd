@@ -2,15 +2,20 @@
 % Please edit documentation in R/getDistances.R
 \name{getDistances}
 \alias{getDistances}
-\title{calcaulte Euclidean distance}
+\title{Compute Euclidean Distances Between Target and Non-Target Scores}
 \usage{
-getDistances(regulon_set1, regulon_set2)
+getDistances(target_results)
 }
 \arguments{
-\item{regulon_set1}{regulons' scMORE score in target cell type}
-
-\item{regulon_set2}{regulons' scMORE score in other cell types}
+\item{target_results}{A data frame with three columns: RegulonName, Target, and NonTarget.}
+}
+\value{
+A list containing:
+- \code{between}: Pairwise distances between Target and NonTarget.
+- \code{within_target}: Pairwise distances within the Target group.
+- \code{within_nontarget}: Pairwise distances within the NonTarget group.
 }
 \description{
-Define a function to calculate pairwise distances
+This function calculates the Euclidean distances between Target and NonTarget scores
+from the input dataset, as well as the within distances for each group.
 }

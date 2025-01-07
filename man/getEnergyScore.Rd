@@ -2,15 +2,16 @@
 % Please edit documentation in R/getEnergyScore.R
 \name{getEnergyScore}
 \alias{getEnergyScore}
-\title{Energy score calculation}
+\title{Energy Score Calculation}
 \usage{
-getEnergyScore(regulon_set1, regulon_set2)
+getEnergyScore(regulon2disease_results, targetCelltype = 1)
 }
 \arguments{
-\item{regulon_set1}{regulons' scMORE score in target cell type}
+\item{regulon2disease_results}{TRS results from regulon2disease() function.}
 
-\item{regulon_set2}{regulons' scMORE score in other cell types}
+\item{targetCelltype}{Can be specified as either the index of the target cell type column (e.g., 1),
+or the name of the target cell type (e.g., "Monocytes").}
 }
 \description{
-Calculate the energy statistics of regulons in target cell type compared to other cell types
+Calculate the energy statistics of regulons in the target cell type compared to other cell types.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/getRegulonScore.R
 \name{getRegulonScore}
 \alias{getRegulonScore}
-\title{Calculates the Trait-Associated Regulon Score (TARS) for a given regulon}
+\title{Calculates the Trait-associated Regulon Score (TRS) for a given regulon}
 \usage{
 getRegulonScore(each_module_score, theta = 0.5, alpha = 1)
 }
@@ -18,9 +18,9 @@ this is generated in the 'regulon2disease()' function.}
 A list containing:
 - \code{SpecificityScore}: The computed M1 value (specificity score).
 - \code{GeneRiskScore}: The computed M2 value (genetic risk score).
-- \code{RegulonScore}: The final TARS score for the regulon.
+- \code{RegulonScore}: The final TRS score for the regulon.
 }
 \description{
 This function combines the importance weight (genetic risk score) and specificity score
-(cell type specificity) to calculate a TARS (Trait-Associated Regulon Score) for a given regulon.
+(cell type specificity) to calculate a TRS (Trait-associated Regulon Score) for a given regulon.
 }

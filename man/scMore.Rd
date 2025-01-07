@@ -17,6 +17,7 @@ scMore(
   p1 = 0.05,
   p2 = 0.05,
   p3 = 0.05,
+  method = "cosine",
   nSeed = 1234
 )
 }
@@ -51,8 +52,11 @@ for each regulon. Default: 0.05.}
 \item{p2}{Threshold for statistical significance of the genetic risk score
 for each regulon. Default: 0.05.}
 
-\item{p3}{Threshold for statistical significance of the trait-associated regulon score (TARS).
+\item{p3}{Threshold for statistical significance of the trait-associated regulon score (TRS).
 Default: 0.05.}
+
+\item{method}{Method used for calculating the cell type specificity of nodes (TFs or genes):
+'cosine' (default) or 'average'.}
 
 \item{nSeed}{Random seed for reproducibility (i.e., \code{set.seed()}). Default: 1234.}
 

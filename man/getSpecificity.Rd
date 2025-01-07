@@ -2,12 +2,15 @@
 % Please edit documentation in R/getSpecificity.R
 \name{getSpecificity}
 \alias{getSpecificity}
-\title{get specificity in each cell type}
+\title{Calculate Cell-Type Specificity Scores of Nodes}
 \usage{
-getSpecificity(single_cell)
+getSpecificity(single_cell, method = "cosine")
 }
 \arguments{
 \item{single_cell}{Input single-cell data (Seurat object)}
+
+\item{method}{Method used for calculating the cell type specificity of nodes (TFs or genes):
+'cosine' (default) or 'average'.}
 }
 \value{
 A data frame with columns:
@@ -16,5 +19,5 @@ A data frame with columns:
 - celltypes: Cell type names
 }
 \description{
-Calculate specificity scores (CTS) of TFs and target genes across all cell types
+Calculate specificity scores (CTS) of TFs and target genes across all cell types.
 }

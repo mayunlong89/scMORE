@@ -1,14 +1,16 @@
-#'
 #' @title Link genes to genomic peaks
+#' @description Links genes to genomic peaks and computes Strength based on the GRN inference method.
 #'
 #' @param grn_outputs A list containing GRN output data, with a 'Regions' column specifying genomic peak ranges.
+#' @param infer_method GRN inference method used: 'glm', 'cv.glmnet', or 'xgb'.
+#'
 #' @return A data frame mapping genes to genomic peaks with associated log-transformed p-values (Strength).
+#'
 #' @import dplyr
 #' @import tidyr
 #' @export
-#'
-peak2gene <- function(grn_outputs) {
 
+peak2gene <- function(grn_outputs, infer_method) {
   # Extract GRN data
   grn_data <- grn_outputs$grn
 
@@ -18,18 +20,30 @@ peak2gene <- function(grn_outputs) {
   }
   grn_data$Regions <- as.character(grn_data$Regions)
 
-  # Ensure the 'Pval' column exists for computing Strength
-  if (!"Pval" %in% colnames(grn_data)) {
-    stop("'Pval' column is missing in the GRN data")
+  # Determine the column to use for Strength calculation
+  strength_column <- switch(
+    infer_method,
+    glm = "Pval",
+    cv.glmnet = "Corr",
+    xgb = "Gain",
+    stop("Invalid infer_method specified")
+  )
+
+  if (!strength_column %in% colnames(grn_data)) {
+    stop(paste0("'", strength_column, "' column is missing in the GRN data"))
   }
 
   # Split the 'Regions' column by ";" and expand into multiple rows
   expanded_grn_data <- grn_data %>%
-    tidyr::separate_rows(Regions, sep = ";") %>%   # Split rows by ';'
-    dplyr::mutate(Strength = -log10(Pval)) %>%    # Add a new 'Strength' column
-    dplyr::select(-Pval)                          # Optionally remove the original 'Pval' column
+    tidyr::separate_rows(Regions, sep = ";") %>%
+    dplyr::mutate(
+      Strength = switch(
+        infer_method,
+        glm = -log10(Pval),
+        cv.glmnet = (Corr + 1) / 2,
+        xgb = Gain + 0.00005
+      )
+    )
 
-  # Return the processed data frame
   return(expanded_grn_data)
 }
-
