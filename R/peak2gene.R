@@ -30,6 +30,7 @@ peak2gene <- function(grn_outputs, infer_method = 'glm') {
     infer_method,
     glm = "Pval",
     cv.glmnet = "Corr",
+    glmnet = "Corr",
     xgb = "Gain",
     stop("Invalid infer_method specified")
   )
@@ -46,6 +47,7 @@ peak2gene <- function(grn_outputs, infer_method = 'glm') {
         infer_method,
         glm = -log10(Pval),
         cv.glmnet = (Corr + 1) / 2,
+        glmnet = (Corr + 1) / 2,
         xgb = Gain + 0.00005
       )
     )
