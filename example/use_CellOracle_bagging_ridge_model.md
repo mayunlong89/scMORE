@@ -7,12 +7,18 @@ Thus, user should install scikit-learn and pandas in python in advance.
 
 ## MAC system
 
+open terminal
+
 
 ```bash
 
-open terminal
 source ~/.virtualenvs/r-reticulate/bin/activate
 
+pip install pandas
+Successfully installed pandas-<version>
+
+pip install scikit-learn
+Successfully installed scikit-learn-<version>
 
 
 ```
