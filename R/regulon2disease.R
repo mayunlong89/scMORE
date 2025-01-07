@@ -22,6 +22,12 @@
 #' @param buffer Numeric value specifying the flanking region size for genomic peaks.
 #'               Extends the peak range upstream and downstream by the specified value.
 #'               For example, `buffer = 500` adds 500 bp on both sides of a peak. Default: 500 bp.
+#' @param infer_method GRN inference method:
+#'   - 'glm' (default): Generalized linear model
+#'   - 'cv.glmnet': Regularized GLMs
+#'   - 'brms': Bayesian regression models
+#'   - 'bagging_ridge': Bagging ridge and Bayesian ridge (CellOracle)
+#'   - 'xgb': XGBoost gradient-boosted Random Forest (SCENIC)
 #' @param p1 Threshold for statistical significance of the cell type-specificity score (CTS)
 #'           for each regulon. Default: 0.05.
 #' @param p2 Threshold for statistical significance of the genetic relevance score (GRS)
@@ -46,13 +52,14 @@ regulon2disease <- function(grn_outputs,
                             alpha = 1,
                             top_n = 5,
                             buffer = 500,
+                            infer_method = 'glm',
                             p1 = 0.05,
                             p2 = 0.05,
                             p3 = 0.05) {
 
   # Step 4.1: Map SNPs to TF-peaks and target genes
   message("Step 4.1: Mapping SNPs to TF-peaks and target genes...")
-  peak2gene_strength <- peak2gene(grn_outputs)  # Map peaks to genes
+  peak2gene_strength <- peak2gene(grn_outputs,infer_method = infer_method)  # Map peaks to genes
   snp2peak_map <- snp2peak(snp_info, peak2gene_strength, buffer = buffer)  # SNP-to-peak mapping
 
   # Add gene risk scores to SNP-to-peak mapping

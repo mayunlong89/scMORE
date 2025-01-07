@@ -2,7 +2,12 @@
 #' @description Links genes to genomic peaks and computes Strength based on the GRN inference method.
 #'
 #' @param grn_outputs A list containing GRN output data, with a 'Regions' column specifying genomic peak ranges.
-#' @param infer_method GRN inference method used: 'glm', 'cv.glmnet', or 'xgb'.
+#' @param infer_method GRN inference method:
+#'   - 'glm' (default): Generalized linear model
+#'   - 'cv.glmnet': Regularized GLMs
+#'   - 'brms': Bayesian regression models
+#'   - 'bagging_ridge': Bagging ridge and Bayesian ridge (CellOracle)
+#'   - 'xgb': XGBoost gradient-boosted Random Forest (SCENIC)
 #'
 #' @return A data frame mapping genes to genomic peaks with associated log-transformed p-values (Strength).
 #'
@@ -10,7 +15,7 @@
 #' @import tidyr
 #' @export
 
-peak2gene <- function(grn_outputs, infer_method) {
+peak2gene <- function(grn_outputs, infer_method = 'glm') {
   # Extract GRN data
   grn_data <- grn_outputs$grn
 

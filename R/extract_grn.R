@@ -1,7 +1,15 @@
 #' @title Extract GRN Data
+#'
+#' #' @param infer_method GRN inference method:
+#'   - 'glm' (default): Generalized linear model
+#'   - 'cv.glmnet': Regularized GLMs
+#'   - 'brms': Bayesian regression models
+#'   - 'bagging_ridge': Bagging ridge and Bayesian ridge (CellOracle)
+#'   - 'xgb': XGBoost gradient-boosted Random Forest (SCENIC)
+#'
 #' @description Helper function to extract GRN data based on inference method.
 #'
-extract_grn <- function(regulons, single_cell, infer_method) {
+extract_grn <- function(regulons, single_cell, infer_method = 'glm') {
   if (infer_method %in% c("cv.glmnet", "glmnet")) {
     grn_data <- coef(single_cell)
     corr_info <- grn_data %>% dplyr::select(tf, target, region, corr)

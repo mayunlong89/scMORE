@@ -58,16 +58,20 @@ getSpecificity <- function(single_cell, method = 'cosine') {
 
     # Step 3: Calculate specificity for each cell type
     specificity <- sweep(celltype_averages[, -ncol(celltype_averages)], 1, celltype_averages$Overall_Mean, "/")
+    # Step 4: Convert specificity matrix to a data frame
+    specificity_df <- as.data.frame(specificity)
+    # Step 5: Add gene names as a new column
+    specificity_df$genes <- rownames(specificity_df)
 
-    # Step 4: Convert specificity matrix to long format
-    target_scores <- specificity %>%
-      as.data.frame() %>%
-      tibble::rownames_to_column(var = "genes") %>% # Add gene names as a column
-      tidyr::pivot_longer(
-        cols = -genes, # All columns except "genes"
-        names_to = "celltypes", # Column name for cell types
-        values_to = "scores"    # Column name for specificity scores
+    # Step 6: Reshape the data frame to a long format
+    target_scores <- do.call(rbind, lapply(names(specificity_df)[-ncol(specificity_df)], function(celltype) {
+      data.frame(
+        genes = specificity_df$genes,
+        celltypes = celltype,
+        scores = specificity_df[[celltype]],
+        stringsAsFactors = FALSE
       )
+    }))
   } else {
     stop("Invalid specificity_method. Choose 'cosine', 'average', or 'mean_specificity'.")
   }
