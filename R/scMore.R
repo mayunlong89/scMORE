@@ -55,6 +55,8 @@ scMore <- function(single_cell,
                    p1 = 0.05,
                    p2 = 0.05,
                    p3 = 0.05,
+                   peak2gene_method = 'Signac',
+                   infer_method = 'glm',
                    method = 'cosine',
                    nSeed = 1234) {
 
@@ -64,12 +66,16 @@ scMore <- function(single_cell,
   # Step 1: Construct the global TF-gene regulatory network
   # Identify transcription factors (TFs) and their target genes
   message("Step 1: Constructing the global TF-gene regulatory network...")
-  grn_outputs <- createRegulon(single_cell, n_targets = n_targets)
+  grn_outputs <- createRegulon(single_cell,
+                               n_targets = n_targets,
+                               peak2gene_method = peak2gene_method,
+                               infer_method = infer_method)
 
   # Step 2: Calculate specificity scores for target genes
   # Evaluate the relevance of target genes to specific regulons
   message("Step 2: Calculating specificity scores for target genes...")
-  target_scores <- suppressWarnings(getSpecificity(single_cell,method = method))
+  target_scores <- suppressWarnings(getSpecificity(single_cell,
+                                                   method = method))
 
   # Step 3: Get gene-level association scores
   message("Step 3: Retrieving gene-level association scores...")
