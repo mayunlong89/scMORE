@@ -29,9 +29,11 @@
 #'           Default: 0.05.
 #' @param peak2gene_method Method for mapping peaks to genes. Options: `'Signac'` or `'GREAT'`.
 #' @param infer_method Method for inference modeling. Options:
-#'                     - Generalized Linear Models (`'glm'`)
-#'                     - Regularized GLMs (`'glmnet'`, `'cv.glmnet'`)
-#'                     - Bayesian regression models (`'brms'`).
+#'                     - Generalized Linear Model (`'glm'`)
+#'                     - Regularized GLM (`'glmnet'`, `'cv.glmnet'`)
+#'                     - Bayesian regression models (`'brms'`)
+#'                     - Bagging ridge and Bayesian ridge models (`'bagging_ridge'`,CellOracle)
+#'                     - XGBoost gradient-boosted Random Forest (`'xgb'`, SCENIC)
 #' @param top_n Number of top targets for each TF used to calculate its importance. Default: 5.
 #' @param nSeed Random seed for reproducibility (i.e., `set.seed()`). Default: 1234.
 #'
