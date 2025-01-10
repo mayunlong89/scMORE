@@ -16,8 +16,12 @@ scMORE (single cell MultiOmics Regulon Enrichment) is designed to identify disea
 We recommend installing scMORE via Github using devtools:
 
 ``` r
-# install.packages("devtools")
+# install packages
+if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
+
 devtools::install_github("mayunlong89/scMORE")
+
+
 ```
 See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes. You can find the old version from
 [GitHub](https://github.com/mayunlong89/ctDRTF).
@@ -88,7 +92,22 @@ scMore(single_cell,
 
 ```r
 
+# Assign cell types
 Idents(single_cell) <- single_cell$cell_type
+
+# If your system did not install some dependent packages: COSG, Pando, ArchR, please install first
+if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+
+# Install ArchR package
+devtools::install_github("GreenleafLab/ArchR", ref="master", repos = BiocManager::repositories())
+
+# Install Pando package
+devtools::install_github('quadbio/Pando')
+
+# Install COSG package
+if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+remotes::install_github(repo = 'genecell/COSGR')
 
 ```
 
