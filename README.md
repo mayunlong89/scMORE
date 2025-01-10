@@ -95,20 +95,6 @@ scMore(single_cell,
 # Assign cell types
 Idents(single_cell) <- single_cell$cell_type
 
-# If your system did not install some dependent packages: COSG, Pando, ArchR, please install first
-if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
-if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-
-# Install ArchR package
-devtools::install_github("GreenleafLab/ArchR", ref="master", repos = BiocManager::repositories())
-
-# Install Pando package
-devtools::install_github('quadbio/Pando')
-
-# Install COSG package
-if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
-remotes::install_github(repo = 'genecell/COSGR')
-
 ```
 
 
@@ -229,6 +215,25 @@ magma_results <- read.table("magma.genes.out",header = TRUE)
 #For more detailed codes on MAGMA tool, please refer to [here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
 
 
+# Install other dependent packages
+```r
+
+# If your system did not install some dependent packages: COSG, Pando, ArchR, please install first
+if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+
+# Install ArchR package
+devtools::install_github("GreenleafLab/ArchR", ref="master", repos = BiocManager::repositories())
+
+# Install Pando package
+devtools::install_github('quadbio/Pando')
+
+# Install COSG package
+if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+remotes::install_github(repo = 'genecell/COSGR')
+
+
+```
 
 
 ### Citations
