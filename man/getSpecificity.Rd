@@ -10,7 +10,9 @@ getSpecificity(single_cell, method = "cosine")
 \item{single_cell}{Input single-cell data (Seurat object)}
 
 \item{method}{Method used for calculating the cell type specificity of nodes (TFs or genes):
-'cosine' (default) or 'average'.}
+- 'cosine' (default)
+- 'mean_specificity'
+- 'average'}
 }
 \value{
 A data frame with columns:

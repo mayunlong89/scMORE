@@ -4,14 +4,23 @@
 \alias{peak2gene}
 \title{Link genes to genomic peaks}
 \usage{
-peak2gene(grn_outputs)
+peak2gene(grn_outputs, infer_method = "glm")
 }
 \arguments{
 \item{grn_outputs}{A list containing GRN output data, with a 'Regions' column specifying genomic peak ranges.}
+
+\item{infer_method}{GRN inference method:
+\itemize{
+\item 'glm' (default): Generalized linear model
+\item 'cv.glmnet': Regularized GLMs
+\item 'brms': Bayesian regression models
+\item 'bagging_ridge': Bagging ridge and Bayesian ridge (CellOracle)
+\item 'xgb': XGBoost gradient-boosted Random Forest (SCENIC)
+}}
 }
 \value{
 A data frame mapping genes to genomic peaks with associated log-transformed p-values (Strength).
 }
 \description{
-Link genes to genomic peaks
+Links genes to genomic peaks and computes Strength based on the GRN inference method.
 }

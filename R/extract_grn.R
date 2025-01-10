@@ -1,6 +1,6 @@
 #' @title Extract GRN Data
 #'
-#' #' @param infer_method GRN inference method:
+#' @param infer_method GRN inference method:
 #'   - 'glm' (default): Generalized linear model
 #'   - 'cv.glmnet': Regularized GLMs
 #'   - 'brms': Bayesian regression models

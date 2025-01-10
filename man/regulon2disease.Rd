@@ -14,6 +14,7 @@ regulon2disease(
   alpha = 1,
   top_n = 5,
   buffer = 500,
+  infer_method = "glm",
   p1 = 0.05,
   p2 = 0.05,
   p3 = 0.05
@@ -46,6 +47,15 @@ Columns include:
 \item{buffer}{Numeric value specifying the flanking region size for genomic peaks.
 Extends the peak range upstream and downstream by the specified value.
 For example, \code{buffer = 500} adds 500 bp on both sides of a peak. Default: 500 bp.}
+
+\item{infer_method}{GRN inference method:
+\itemize{
+\item 'glm' (default): Generalized linear model
+\item 'cv.glmnet': Regularized GLMs
+\item 'brms': Bayesian regression models
+\item 'bagging_ridge': Bagging ridge and Bayesian ridge (CellOracle)
+\item 'xgb': XGBoost gradient-boosted Random Forest (SCENIC)
+}}
 
 \item{p1}{Threshold for statistical significance of the cell type-specificity score (CTS)
 for each regulon. Default: 0.05.}

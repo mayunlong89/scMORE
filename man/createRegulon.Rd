@@ -16,16 +16,24 @@ createRegulon(
 
 \item{n_targets}{Minimum number of targets required in a regulon (default = 5)}
 
-\item{peak2gene_method}{Two methods to choose: 'Signac' and 'GREAT'}
+\item{peak2gene_method}{Method for peak-to-gene linkage: 'Signac' or 'GREAT'}
 
-\item{infer_method}{You can choose different inference methods: GLMs ('glm'),
-regularized GLMs('glmnet','cv.glmnet'), or Bayesian regression models('brms')}
+\item{infer_method}{GRN inference method:
+\itemize{
+\item 'glm' (default): Generalized linear model
+\item 'cv.glmnet': Regularized GLMs
+\item 'brms': Bayesian regression models
+\item 'bagging_ridge': Bagging ridge and Bayesian ridge (CellOracle)
+\item 'xgb': XGBoost gradient-boosted Random Forest (SCENIC)
+}}
 }
 \value{
 A list containing:
-- grn: Filtered GRN with regulons meeting the gene threshold
-- tf_names: List of TFs with sufficient regulons
+\itemize{
+\item grn: Filtered GRN with regulons meeting the gene threshold
+\item tf_names: List of TFs with sufficient regulons
+}
 }
 \description{
-Using single-cell multiomics data (scRNA-seq and scATAC-seq data) to construct a global TF-peak-gene regulatory network
+Use single-cell multiomics data (scRNA-seq and scATAC-seq) to construct a global TF-peak-gene regulatory network.
 }

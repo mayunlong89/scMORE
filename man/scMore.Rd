@@ -17,6 +17,8 @@ scMore(
   p1 = 0.05,
   p2 = 0.05,
   p3 = 0.05,
+  peak2gene_method = "Signac",
+  infer_method = "glm",
   method = "cosine",
   nSeed = 1234
 )
@@ -55,17 +57,21 @@ for each regulon. Default: 0.05.}
 \item{p3}{Threshold for statistical significance of the trait-associated regulon score (TRS).
 Default: 0.05.}
 
-\item{method}{Method used for calculating the cell type specificity of nodes (TFs or genes):
-'cosine' (default) or 'average'.}
-
-\item{nSeed}{Random seed for reproducibility (i.e., \code{set.seed()}). Default: 1234.}
-
 \item{peak2gene_method}{Method for mapping peaks to genes. Options: \code{'Signac'} or \code{'GREAT'}.}
 
 \item{infer_method}{Method for inference modeling. Options:
-- Generalized Linear Models (\code{'glm'})
-- Regularized GLMs (\code{'glmnet'}, \code{'cv.glmnet'})
-- Bayesian regression models (\code{'brms'}).}
+- Generalized Linear Model (\code{'glm'})
+- Regularized GLM (\code{'glmnet'}, \code{'cv.glmnet'})
+- Bayesian regression models (\code{'brms'})
+- Bagging ridge and Bayesian ridge models (\code{'bagging_ridge'},CellOracle)
+- XGBoost gradient-boosted Random Forest (\code{'xgb'}, SCENIC)}
+
+\item{method}{Method used for calculating the cell type specificity of nodes (TFs or genes):
+- 'cosine' (default)
+- 'mean_specificity'
+- 'average'}
+
+\item{nSeed}{Random seed for reproducibility (i.e., \code{set.seed()}). Default: 1234.}
 }
 \value{
 A list containing:
