@@ -138,14 +138,14 @@ CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	566024	-0.013942	0.032681	0.174126	0.020699	35253	rs6421779
 
 #3) gene_info (MAGMA results)
+#GENE: Entrez Gene ID (Gene symbols will be automatically annotated);
 #CHR: chromosome;
 #START: start position;
 #STOP: end position;
 #NSNPs: number of SNPs annotated;
-#LP: -log10(p-value);
-#AF: allele frequency;
-#SZ: sample size;
-#SNP: SNP id number
+#N: sample sizes;
+#ZSTAT: Z-scores;
+#P: raw P values.
 GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT            P
 148398       1     854993     884961     76      20  482730       0.7726      0.21988
 26155        1     874583     899679     58      13  482730       0.4058      0.34244
@@ -167,6 +167,15 @@ GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT        
 6339         1    1210816    1232409     69      19  482730       -1.267      0.89742
 
 #4) gene_info (FUMA results)
+#GENE: ENSEMBL ID;
+#CHR: chromosome;
+#START: start position;
+#STOP: end position;
+#NSNPs: number of SNPs annotated;
+#N: sample sizes;
+#ZSTAT: Z-scores;
+#P: raw P values;
+#SYMBOL: Gene symbols.
 GENE	CHR	START	STOP	NSNPS	NPARAM	N	ZSTAT	P	SYMBOL
 ENSG00000237683	1	134901	139379	6	4	171643	0.12078	0.45193	AL627309.1
 ENSG00000269831	1	738532	739137	4	2	171643	0.52502	0.29979	AL669831.1
