@@ -116,6 +116,7 @@ scMORE is fully compatiable with Seurat, a widely-used single-cell analysis tool
 #AF: allele frequency;
 #SZ: sample size;
 #SNP: SNP ID.
+
 CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	49298	0.003358	0.011295	0.115634	0.823742	35253	rs10399793
 1	54712	0.045321	0.044239	0.514848	0.010379	35253	rs573184866
@@ -146,6 +147,7 @@ CHR	POS	ES	SE	LP	AF	SZ	SNP
 #N: sample sizes;
 #ZSTAT: Z-scores;
 #P: raw P values.
+
 GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT            P
 148398       1     854993     884961     76      20  482730       0.7726      0.21988
 26155        1     874583     899679     58      13  482730       0.4058      0.34244
@@ -176,6 +178,7 @@ GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT        
 #ZSTAT: Z-scores;
 #P: raw P values;
 #SYMBOL: Gene symbols.
+
 GENE	CHR	START	STOP	NSNPS	NPARAM	N	ZSTAT	P	SYMBOL
 ENSG00000237683	1	134901	139379	6	4	171643	0.12078	0.45193	AL627309.1
 ENSG00000269831	1	738532	739137	4	2	171643	0.52502	0.29979	AL669831.1
