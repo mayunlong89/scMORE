@@ -1,13 +1,14 @@
 
-# 1) MAGMA codes for generating disease-relevant association scores for TFs and target genes
+#### 1) MAGMA codes for generating disease-relevant association scores for TFs and target genes
 
+```R
 #DIRECTORY
 export MAGMA_DIR=/share/pub/mayl/MAGMA
 export DATA=/share/pub/mayl/MAGMA_test
 export OUTPUT=/share/pub/mayl/MAGMA_test
 
 #MAGMA annotation:
-# By default, a 10 kb window centered on the TSS of a gene is used.
+#By default, a 10 kb window centered on the TSS of a gene is used.
 
 $MAGMA_DIR/magma \
     --snp-loc  $DATA/GWAS_UKBiobank_summary_final.hg19.location  \
@@ -27,4 +28,4 @@ $MAGMA_DIR/magma \
 # gene_info
 magma_results <- read.table("magma.genes.out",header = TRUE)
 
-
+``
