@@ -78,5 +78,5 @@ bash magma.sh neutr_count 563946
 # neutr_count: trait name
 # 563946: sample size
 ```
-Note: see 'magma.sh' code in (magma)[https://github.com/mayunlong89/scMORE/blob/main/example/magma.sh]
+Note: see 'magma.sh' code in [magma](https://github.com/mayunlong89/scMORE/blob/main/example/magma.sh).
 
