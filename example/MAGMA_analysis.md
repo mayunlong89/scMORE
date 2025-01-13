@@ -41,7 +41,7 @@ rs561234294 1 54591
 rs2462492 1 54676
 rs534350410 1 79188
 
-#2) PD.Pval (no header: SNP, P-value)
+#2) PD.Pval (SNP, P, or no header)
 rs561234294 0.012
 rs2462492 0.0003
 rs534350410 0.096269
