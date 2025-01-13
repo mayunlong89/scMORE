@@ -28,6 +28,8 @@ $MAGMA_DIR/magma \
 # gene_info
 magma_results <- read.table("magma.genes.out",header = TRUE)
 
+gene_info <- magma_results
+
 ```
 
 #### Input format for MAGMA
