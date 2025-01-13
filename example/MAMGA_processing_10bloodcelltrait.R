@@ -66,6 +66,8 @@ srun --pty --mem=15G --time=3-00:00:00 bash magma_bloodcell_count.sh
 # Example: Running MAGMA for neutrophil count
 srun --pty --mem=15G --time=3-00:00:00 bash ../magma.sh neutr_count 563946
 
+# Note: see 'magma.sh' code
+
 # Alternatively, run MAGMA directly
 bash magma.sh neutr_count 563946
 # neutr_count: trait name
