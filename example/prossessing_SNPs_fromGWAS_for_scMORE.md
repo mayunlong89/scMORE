@@ -23,4 +23,15 @@ awk '$6 >= 0.01 {print $2, $3, $7, $8, -log($9)/log(10), $6, $1}' GCST90020053_G
 cat GCST90020053_GRCh37.tsv | awk '$6 >= 0.01' | awk '{print $2, $3, $7, $8, -log($9)/log(10), $6, $1}'  > frailty_index_maf0.01.txt
 
 #change the header into: CHR, POS, ES, SE, LP, AF, SNP
+
+
+## for lifespan GWAS------
+#version 1
+awk '$8 >= 0.01 {print $3, $4, $9, $10, -log($11)/log(10), $8, $1}' lifegen_phase2_bothpl_alldr_2017_09_18.tsv > lifespan_maf0.01.txt
+
+#version 2
+cat lifegen_phase2_bothpl_alldr_2017_09_18.tsv | awk '$8 >= 0.01' | awk '{print $3, $4, $9, $10, -log($11)/log(10), $8, $1}'  > lifespan_maf0.01.txt
+
+#change the header into: CHR, POS, ES, SE, LP, AF, SNP
+
 ```
