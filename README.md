@@ -115,7 +115,7 @@ scMORE is fully compatiable with Seurat, a widely-used single-cell analysis tool
 #LP: -log10(p-value);
 #AF: allele frequency;
 #SZ: sample size;
-#SNP: SNP id number
+#SNP: SNP ID.
 CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	49298	0.003358	0.011295	0.115634	0.823742	35253	rs10399793
 1	54712	0.045321	0.044239	0.514848	0.010379	35253	rs573184866
