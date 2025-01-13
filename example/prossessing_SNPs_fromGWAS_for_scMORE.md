@@ -34,4 +34,29 @@ cat lifegen_phase2_bothpl_alldr_2017_09_18.tsv | awk '$8 >= 0.01' | awk '{print 
 
 #change the header into: CHR, POS, ES, SE, LP, AF, SNP
 
+
+## for EAA GWAS------
+#version 1
+awk '$6 >= 0.01 {print $2, $3, $7, $8, -log($9)/log(10), $6, $1}' GCST90014290_buildGRCh37.tsv > EAA_maf0.01.txt
+
+#version 2
+cat GCST90014290_buildGRCh37.tsv | awk '$6 >= 0.01' | awk '{print $2, $3, $7, $8, -log($9)/log(10), $6, $1}'  > EAA_maf0.01.txt
+
+#change the header into: CHR, POS, ES, SE, LP, AF, SNP
+
+## for healthspan GWAS------
+#version 1
+
+cat healthspan_summary.csv | sed 's/,/\t/g' | awk '$6 >= 0.01' | awk '{print $2, $3, $7, $8, -log($10)/log(10), $6, $1}'  > healthspan_maf0.01.txt
+
+#change the header into: CHR, POS, ES, SE, LP, AF, SNP
+
+## for mvAge GWAS------
+#version 1
+awk '$4 >= 0.01 {print $2, $3, $7, $8, -log($9)/log(10), $4, $1}' mvAge.summary.EUR.txt > mvAge_maf0.01.txt
+
+#version 2
+cat mvAge.summary.EUR.txt | awk '$4 >= 0.01' | awk '{print $2, $3, $7, $8, -log($9)/log(10), $4, $1}'  > mvAge_maf0.01.txt
+
+#change the header into: CHR, POS, ES, SE, LP, AF, SNP
 ```
