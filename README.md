@@ -108,6 +108,14 @@ The input format of single-cell data: Seurat-generated S4 object.
 scMORE is fully compatiable with Seurat, a widely-used single-cell analysis tool.
 
 #2) snp_info (GWAS summary statistics)
+#CHR: chromosome;
+#POS: position;
+#ES: effect size;
+#SE: standard error;
+#LP: -log10(p-value);
+#AF: allele frequency;
+#SZ: sample size;
+#SNP: SNP id number
 CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	49298	0.003358	0.011295	0.115634	0.823742	35253	rs10399793
 1	54712	0.045321	0.044239	0.514848	0.010379	35253	rs573184866
@@ -130,6 +138,14 @@ CHR	POS	ES	SE	LP	AF	SZ	SNP
 1	566024	-0.013942	0.032681	0.174126	0.020699	35253	rs6421779
 
 #3) gene_info (MAGMA results)
+#CHR: chromosome;
+#START: start position;
+#STOP: end position;
+#NSNPs: number of SNPs annotated;
+#LP: -log10(p-value);
+#AF: allele frequency;
+#SZ: sample size;
+#SNP: SNP id number
 GENE       CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT            P
 148398       1     854993     884961     76      20  482730       0.7726      0.21988
 26155        1     874583     899679     58      13  482730       0.4058      0.34244
