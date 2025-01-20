@@ -93,7 +93,7 @@ scMore <- function(single_cell,
     theta = theta,
     alpha = alpha,
     buffer = buffer,
-    method = method,
+    infer_method = infer_method,
     top_n = top_n
   )
 
