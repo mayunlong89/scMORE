@@ -66,7 +66,7 @@ regulon2disease <- function(grn_outputs,
   snp2peak_map$geneScores <- geneRiskScores$logP[match(snp2peak_map$Target, geneRiskScores$SYMBOL)]
   snp2peak_map <- getPeakScore(snp2peak_map)  # Calculate peak importance scores
 
-  # Extract regulons containing SNP, peak, TF, target gene, and importance score
+  # Extract regulons containing SNP, peak, TF, target gene, and importance score (GRS score of each node)
   regulons <- snp2peak_map[, c("snp_id", "peak_ids", "TF", "Target", "Importance_weighted")]
 
   # Step 4.2: Define Regulon list and cell types
@@ -107,7 +107,7 @@ regulon2disease <- function(grn_outputs,
       # Calculate importance scores for the regulon
       eachModule_Importance_score <- getRiskScore(Module, top_n = top_n)
 
-      # Subset target scores for the current cell type
+      # Subset target cell type-specificity scores for the current cell type
       target_scores_sub <- target_scores[target_scores[, "celltypes"] == all_celltype_names[i], ]
 
       # Filter specificity scores for regulon genes
@@ -119,6 +119,10 @@ regulon2disease <- function(grn_outputs,
         each_module_score$genes,
         eachModule_Importance_score$Target
       )]
+
+      #Here, header of each_module_score: genes, scores, celltypes, anno, Importance_weighted
+      #scores: cell type-specificity (CTS) score of each gene (node)
+      #Importance_weighted: genetic relevance scores (GRS) of each node
 
       # Compute regulon scores (TRS)
       TRS <- getRegulonScore(each_module_score, theta = theta, alpha = alpha)
