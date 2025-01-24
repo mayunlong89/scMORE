@@ -49,7 +49,7 @@ getPeakScore <- function(snp2peak_map) {
   snp2peak_map <- snp2peak_map %>%
     mutate(
       Score_multipled = Strength * Significance * geneScores, # Formula: Multiplicative score
-      Importance_weighted = max_min_scale(log10(Score_multipled + 1e-6))
+      Importance_weighted = max_min_scale(log10(Score_multipled + 1e-6)) ##This is GRS for each node
     )
 
   # Step 4: Return the updated data frame
