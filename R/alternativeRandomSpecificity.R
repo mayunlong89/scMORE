@@ -14,6 +14,7 @@
 alternativeRandomSpecificity <- function(single_cell,
                                         Module_regulon,
                                         alternative = "AUCell",
+                                        tf_list,
                                         j=j) {
 
   # Initialize an empty data frame to store results

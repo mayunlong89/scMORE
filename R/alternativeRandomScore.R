@@ -76,6 +76,7 @@ alternativeRandomScore <- function(tf_list,
     single_cell = single_cell,
     Module_regulon = Module_regulon1,
     alternative = alternative,
+    tf_list,
     j=j
   )
   #specificity_score
