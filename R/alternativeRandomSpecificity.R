@@ -1,4 +1,5 @@
-#' @title title: alternativeSpecificityScore
+#' @title generate random cell type Specificity Score using alternative methods
+#'
 #' @description
 #' This function calculates specificity scores for regulatory modules (regulons)
 #' in single-cell RNA-seq data using one of the five alternative methods: AUCell, RSS, VAM, Seurat, or UCell.
@@ -10,8 +11,8 @@
 #'                "AUCell", "RSS", "VAM", "Seurat", "UCell". Default is "AUCell".
 #' @export
 #'
-alternativeRandomSpecificity <- function(single_cell = single_cell,
-                                        Module_regulon = Module_regulon,
+alternativeRandomSpecificity <- function(single_cell,
+                                        Module_regulon,
                                         alternative = "AUCell") {
 
   # Initialize an empty data frame to store results

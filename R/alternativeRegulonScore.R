@@ -1,4 +1,4 @@
-#' @title Calculates the Trait-associated Regulon Score (TRS) for a given regulon
+#' @title Calculate the Trait-associated Regulon Score (TRS) for a given regulon using alternative methods
 #'
 #' @description
 #' This function combines the importance weight (genetic risk score) and specificity score

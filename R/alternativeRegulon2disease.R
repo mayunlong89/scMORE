@@ -74,7 +74,6 @@ alternativeRegulon2disease <- function(grn_outputs,
   # Step 4.2: Define Regulon list and cell types
   message("Step 4.2: Defining Regulon list and cell types...")
   tf_list <- grn_outputs$tf_names  # Transcription factors
-  all_celltype_names <- unique(target_scores[, "celltypes"])  # Cell types
 
   # Initialize results data frame
   all_regulon_results_df <- data.frame(
@@ -105,6 +104,7 @@ alternativeRegulon2disease <- function(grn_outputs,
                                                            regulons = regulons,
                                                            alternative = "RSS")
 
+  all_celltype_names <- unique(target_scores[, "celltypes"])  # Cell types
 
   # Runing regulon2disease_alternative()
   for (i in seq_along(all_celltype_names)) {
@@ -121,9 +121,8 @@ alternativeRegulon2disease <- function(grn_outputs,
       #scores: cell type-specificity (CTS) score of each gene (node)
       #Importance_weighted: genetic relevance scores (GRS) of each node
 
+      # Cell type specificity score (CTS) using alternative methods
       alternative_regulon_score_sub <- alternative_regulon_score$scores[which(alternative_regulon_score$celltypes==all_celltype_names[i] & alternative_regulon_score$regulons==tf_list[j])]
-
-
 
       # Compute regulon scores (TRS)
       TRS <- alternativeRegulonScore(each_module_score,
@@ -132,7 +131,8 @@ alternativeRegulon2disease <- function(grn_outputs,
 
       # Run Monte Carlo (MC) permutation analysis
       len_of_regulon <- length(Module_regulon)
-      background_genes <- rownames(single_cell@assays$RNA)
+      #background_genes <- rownames(single_cell@assays$RNA)
+      background_genes <- unique(regulons$Target)
       real_importance <- regulons$Importance_weighted
 
       # MC analysis
