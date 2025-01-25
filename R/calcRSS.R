@@ -1,5 +1,8 @@
 #' @title RSS
-#' @description Calculates the regulon specificity score
+#' @description Calculates the regulon specificity score.
+#' It should be noticed that this function is produced by authors in SCENIC,
+#' here we just used this RSS function for benchmarking analyses
+#'
 #' @param AUC
 #' @param cellAnnotation
 #' @param cellTypes
@@ -8,6 +11,7 @@
 #' The RSS was first used by Suo et al. in:
 #' Revealing the Critical Regulators of Cell Identity in the Mouse Cell Atlas.
 #' Cell Reports (2018). doi: 10.1016/j.celrep.2018.10.045
+#'
 #' @examples
 #' # TODO
 #' @export

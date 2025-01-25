@@ -92,19 +92,23 @@ alternativeRegulon2disease <- function(grn_outputs,
   # Step 4.3: Perform scMORE analysis for each cell type and regulon
   message("Step 4.3: Calculate Trait-Asssociated Regulon Score and Signifiance...")
 
-  # Open progress bar
-  pb <- txtProgressBar(style = 3)
-  start_time <- Sys.time()
-  total_run <- length(all_celltype_names) * length(tf_list)
-  count <- 0
+
 
   # Calculate the cell type-specificity score (CTS) of each regulon
   alternative_regulon_score <- alternativeSpecificityScore(single_cell = single_cell,
                                                            tf_list = tf_list,
                                                            regulons = regulons,
-                                                           alternative = "RSS")
+                                                           alternative = "AUCell")
 
-  all_celltype_names <- unique(target_scores[, "celltypes"])  # Cell types
+  # extract cell types
+  all_celltype_names <- unique(alternative_regulon_score[, "celltypes"])  # Cell types
+
+
+  # Open progress bar
+  pb <- txtProgressBar(style = 3)
+  start_time <- Sys.time()
+  total_run <- length(all_celltype_names) * length(tf_list)
+  count <- 0
 
   # Runing regulon2disease_alternative()
   for (i in seq_along(all_celltype_names)) {
@@ -145,6 +149,7 @@ alternativeRegulon2disease <- function(grn_outputs,
           len_of_regulon,
           Celltype=all_celltype_names[i],
           alternative = alternative,
+          j=j,
           theta = theta,
           alpha = alpha,
           top_n = top_n

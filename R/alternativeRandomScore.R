@@ -32,6 +32,7 @@ alternativeRandomScore <- function(tf_list,
                                    Celltype,
                                    alternative = "AUCell",
                                    theta = 0.5,
+                                   j=j,
                                    alpha = 1,
                                    top_n = 5) {
   # Step 1: Randomly select one TF
@@ -74,9 +75,10 @@ alternativeRandomScore <- function(tf_list,
   specificity_score <- alternativeRandomSpecificity(
     single_cell = single_cell,
     Module_regulon = Module_regulon1,
-    alternative = alternative
+    alternative = alternative,
+    j=j
   )
-  specificity_score
+  #specificity_score
   # Step 7: Compute M1 (Specificity Score) and M2 (Importance Score)
   M1 <- specificity_score$scores[which(specificity_score$celltypes == Celltype)]
   M2 <- tf_importance + theta * gene_scores$m2_genes

@@ -13,7 +13,8 @@
 #'
 alternativeRandomSpecificity <- function(single_cell,
                                         Module_regulon,
-                                        alternative = "AUCell") {
+                                        alternative = "AUCell",
+                                        j=j) {
 
   # Initialize an empty data frame to store results
   regulon_score <- data.frame(celltypes = character(),   # Cell type identities
@@ -39,7 +40,7 @@ alternativeRandomSpecificity <- function(single_cell,
       single_cell_matrix <- as.matrix(single_cell@assays$RNA@data)
       cells_rankings <- AUCell_buildRankings(single_cell_matrix)
       cells_AUC <- AUCell_calcAUC(Module_regulon, cells_rankings, aucMaxRank = nrow(cells_rankings) * 0.05)
-      AUCell_rss <- as.numeric(getRSS(cells_AUC, cell_anno = Idents(single_cell))[1, ])
+      AUCell_rss <- as.numeric(calcRSS(cells_AUC, cellAnnotation = Idents(single_cell))[1, ])
       names(AUCell_rss) <- levels(Idents(single_cell))
       rss_cell <- data.frame(celltypes = names(AUCell_rss), scores = AUCell_rss, regulons = tf_list[j])
       regulon_score <- bind_rows(regulon_score, rss_cell)
