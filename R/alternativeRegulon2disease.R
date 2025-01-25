@@ -98,7 +98,10 @@ alternativeRegulon2disease <- function(grn_outputs,
   alternative_regulon_score <- alternativeSpecificityScore(single_cell = single_cell,
                                                            tf_list = tf_list,
                                                            regulons = regulons,
-                                                           alternative = "AUCell")
+                                                           alternative = alternative)
+
+
+  alternative_regulon_score$scores <- max_min_scale(alternative_regulon_score$scores)
 
   # extract cell types
   all_celltype_names <- unique(alternative_regulon_score[, "celltypes"])  # Cell types
