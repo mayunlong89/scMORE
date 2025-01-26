@@ -41,10 +41,10 @@ alternativeRandomScore <- function(tf_list,
   # Step 2: Randomly select genes for the regulon, excluding the TF
   len_of_regulon_genes <- len_of_regulon - 1
   if (len_of_regulon_genes <= 0) stop("The length of the regulon must be greater than 1.")
-  sampled_genes <- sample(background_genes, len_of_regulon_genes, replace = TRUE)
+  sampled_genes <- sample(background_genes, len_of_regulon_genes, replace = F)
 
   # Step 3: Sample random importance scores for the selected genes
-  sampled_importance <- sample(real_importance, len_of_regulon_genes, replace = TRUE)
+  sampled_importance <- sample(real_importance, len_of_regulon_genes, replace = F)
 
   # Combine sampled TF and gene data
   sampled_data <- data.frame(
@@ -71,7 +71,7 @@ alternativeRandomScore <- function(tf_list,
     )
 
   # Step 6: Calculate specificity score using the alternative method
-  Module_regulon1 <- c(selected_tf, sampled_genes)
+  Module_regulon1 <- unique(c(selected_tf, sampled_genes))
   specificity_score <- alternativeRandomSpecificity(
     single_cell = single_cell,
     Module_regulon = Module_regulon1,

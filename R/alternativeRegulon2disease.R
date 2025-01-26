@@ -93,19 +93,18 @@ alternativeRegulon2disease <- function(grn_outputs,
   message("Step 4.3: Calculate Trait-Asssociated Regulon Score and Signifiance...")
 
 
-
   # Calculate the cell type-specificity score (CTS) of each regulon
   alternative_regulon_score <- alternativeSpecificityScore(single_cell = single_cell,
                                                            tf_list = tf_list,
                                                            regulons = regulons,
                                                            alternative = alternative)
 
-
-  alternative_regulon_score$scores <- max_min_scale(alternative_regulon_score$scores)
+  #alternative_regulon_score$scores[alternative_regulon_score$scores < 0] <- 0
+  #alternative_regulon_score$scores <- log10(alternative_regulon_score$scores + 1e-6)
+  #alternative_regulon_score$scores <- max_min_scale(alternative_regulon_score$scores)
 
   # extract cell types
   all_celltype_names <- unique(alternative_regulon_score[, "celltypes"])  # Cell types
-
 
   # Open progress bar
   pb <- txtProgressBar(style = 3)
@@ -146,16 +145,16 @@ alternativeRegulon2disease <- function(grn_outputs,
       perm_results <- replicate(
         perm_n,
         alternativeRandomScore(
-          tf_list,
-          background_genes,
-          real_importance,
-          len_of_regulon,
-          Celltype=all_celltype_names[i],
-          alternative = alternative,
-          j=j,
-          theta = theta,
-          alpha = alpha,
-          top_n = top_n
+        tf_list,
+        background_genes,
+        real_importance,
+        len_of_regulon,
+        Celltype=all_celltype_names[i],
+        alternative = alternative,
+        j=j,
+        theta = theta,
+        alpha = alpha,
+        top_n = top_n
         )
       )
 
