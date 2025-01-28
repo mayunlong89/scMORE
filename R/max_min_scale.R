@@ -19,3 +19,4 @@ max_min_scale <- function(x, epsilon=1e-6) {
   return(scale_vec)
 }
 
+

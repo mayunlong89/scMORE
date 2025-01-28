@@ -10,10 +10,10 @@
 #' - Replace NA in 'snp_id' with 'no_snp'.
 #' - Replace NA in 'Significance', 'Strength', and 'geneScores' with their column mean.
 #' - Calculate importance scores for each peak using the formula: `Strength * Significance * geneScores`.
+#' - Limit the scores using the 99th percentile as the ceiling to avoid the effects of outliers.
+#' - Scale scores between 0 and 1 using log10 transformation and min-max scaling.
 #' @export
-#'
 getPeakScore <- function(snp2peak_map) {
-
   # Step 1: Validate input
   required_columns <- c("snp_id", "Significance", "Strength", "geneScores")
   if (!all(required_columns %in% colnames(snp2peak_map))) {
@@ -48,10 +48,19 @@ getPeakScore <- function(snp2peak_map) {
   # Step 3: Calculate importance scores
   snp2peak_map <- snp2peak_map %>%
     mutate(
-      Score_multipled = Strength * Significance * geneScores, # Formula: Multiplicative score
-      Importance_weighted = max_min_scale(log10(Score_multipled + 1e-6)) ##This is GRS for each node
+      Score_multipled = Strength * Significance * geneScores # Formula: Multiplicative score
     )
 
-  # Step 4: Return the updated data frame
+  # Step 4: Apply ceiling to limit extreme values
+  ceiling_value <- quantile(snp2peak_map$Score_multipled, 0.99, na.rm = TRUE)
+  snp2peak_map$Score_multipled <- pmin(snp2peak_map$Score_multipled, ceiling_value)
+
+  # Step 5: Scale importance scores
+  snp2peak_map <- snp2peak_map %>%
+    mutate(
+      Importance_weighted = max_min_scale(log10(Score_multipled + 1e-6)) # Calculate GRS
+    )
+
+  # Step 6: Return the updated data frame
   return(snp2peak_map)
 }
