@@ -21,5 +21,7 @@ Replace missing values (NA) and calculate weighted importance scores (GRS) for p
 \item Replace NA in 'snp_id' with 'no_snp'.
 \item Replace NA in 'Significance', 'Strength', and 'geneScores' with their column mean.
 \item Calculate importance scores for each peak using the formula: \code{Strength * Significance * geneScores}.
+\item Limit the scores using the 99th percentile as the ceiling to avoid the effects of outliers.
+\item Scale scores between 0 and 1 using log10 transformation and min-max scaling.
 }
 }
