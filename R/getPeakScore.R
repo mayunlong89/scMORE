@@ -49,7 +49,7 @@ getPeakScore <- function(snp2peak_map) {
   snp2peak_map <- snp2peak_map %>%
     mutate(
       Score_multipled = Strength * Significance * geneScores # Formula: Multiplicative score
-    )
+      )
 
   # Step 4: Apply ceiling to limit extreme values
   ceiling_value <- quantile(snp2peak_map$Score_multipled, 0.99, na.rm = TRUE)
