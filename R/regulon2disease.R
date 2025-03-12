@@ -174,12 +174,12 @@ regulon2disease <- function(grn_outputs,
         data.frame(
           RegulonID = paste0("Regulon_", j),
           RegulonName = Module_regulon[1],
-          SpecificityScore = z_specificity,
-          SpecificityScore_p = p_specificity,
-          GeneRiskScore = z_importance,
-          ImportanceWeightScore_p = p_importance,
-          RegulonScore = z_regulon,
-          RegulonScore_p = p_regulon,
+          CTS = z_specificity,
+          CTS_P_value = p_specificity,
+          GRS = z_importance,
+          GRS_P_value = p_importance,
+          TRS = z_regulon,
+          TRS_P_value = p_regulon,
           Celltype = all_celltype_names[i]
         )
       )
@@ -192,10 +192,10 @@ regulon2disease <- function(grn_outputs,
 
   # Step 4.4 Add significance column
   message("Step 4.4: Adding Significance column...")
-  all_regulon_results_df$Significance <- ifelse(
+  all_regulon_results_df$CTS_P_value <- ifelse(
     all_regulon_results_df$SpecificityScore_p < p1 &
-      all_regulon_results_df$ImportanceWeightScore_p < p2 &
-      all_regulon_results_df$RegulonScore_p < p3,
+      all_regulon_results_df$GRS_P_value < p2 &
+      all_regulon_results_df$TRS_P_value < p3,
     "Significant",
     "Nonsignificant"
   )
