@@ -78,12 +78,12 @@ regulon2disease <- function(grn_outputs,
   all_regulon_results_df <- data.frame(
     RegulonID = character(),
     RegulonName = character(),
-    SpecificityScore = numeric(),
-    SpecificityScore_p = numeric(),
-    GeneRiskScore = numeric(),
-    ImportanceWeightScore_p = numeric(),
-    RegulonScore = numeric(),
-    RegulonScore_p = numeric(),
+    CTS = numeric(),
+    CTS_P_value = numeric(),
+    GRS = numeric(),
+    GRS_P_value = numeric(),
+    TRS = numeric(),
+    TRS_P_value = numeric(),
     Celltype = character(),
     stringsAsFactors = FALSE
   )
