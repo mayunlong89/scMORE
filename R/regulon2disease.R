@@ -192,8 +192,8 @@ regulon2disease <- function(grn_outputs,
 
   # Step 4.4 Add significance column
   message("Step 4.4: Adding Significance column...")
-  all_regulon_results_df$CTS_P_value <- ifelse(
-    all_regulon_results_df$SpecificityScore_p < p1 &
+  all_regulon_results_df$Significance <- ifelse(
+    all_regulon_results_df$CTS_P_value  < p1 &
       all_regulon_results_df$GRS_P_value < p2 &
       all_regulon_results_df$TRS_P_value < p3,
     "Significant",
