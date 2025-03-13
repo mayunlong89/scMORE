@@ -7,21 +7,25 @@
 #'        or the name of the target cell type (e.g., "Monocytes").
 #' @export
 convertRegulon <- function(regulon2disease_results, targetCelltype = 1) {
+  library(dplyr)
+  library(tidyr)
+
   # Step 1: Extract relevant columns
   regulonScore <- regulon2disease_results[, c("RegulonName", "TRS", "Celltype")]
 
   # Step 2: Convert to wide format with cell types as columns
   regulonScore_convert <- regulonScore %>%
-    pivot_wider(names_from = Celltype, values_from = RegulonScore, values_fill = NA)
+    pivot_wider(names_from = Celltype, values_from = TRS, values_fill = NA)
 
   # Step 3: Identify the target cell type
   celltype_pick <- colnames(regulonScore_convert)[-1]  # Exclude "RegulonName" column
 
   if (is.numeric(targetCelltype)) {
-    # If targetCelltype is an index, select by position
+    if (targetCelltype < 1 || targetCelltype > length(celltype_pick)) {
+      stop("The specified target cell type index is out of range.")
+    }
     target_celltype <- celltype_pick[targetCelltype]
   } else if (is.character(targetCelltype)) {
-    # If targetCelltype is a name, validate and use it directly
     if (!(targetCelltype %in% celltype_pick)) {
       stop("The specified target cell type does not exist in the data.")
     }
@@ -30,16 +34,16 @@ convertRegulon <- function(regulon2disease_results, targetCelltype = 1) {
     stop("Invalid targetCelltype. Must be either a numeric index or a character string.")
   }
 
-  # Step 4: Calculate Target and NonTarget scores
-  result <- regulonScore_convert %>%
-    rowwise() %>%
-    mutate(
-      Target = get(target_celltype),  # Extract values for the target cell type
-      NonTarget = mean(c_across(-c(RegulonName, all_of(target_celltype))), na.rm = TRUE)  # Calculate mean for non-target cell types
-    ) %>%
-    select(RegulonName, Target, NonTarget)  # Retain only the relevant columns
+  # Step 4: Compute Target and NonTarget scores
+  non_target_columns <- setdiff(colnames(regulonScore_convert), c("RegulonName", target_celltype))
 
-  # Step 5: Return the final result
+  result <- regulonScore_convert %>%
+    mutate(
+      Target = .[[target_celltype]],  # Extract target cell type values
+      NonTarget = rowMeans(as.matrix(dplyr::select(., all_of(non_target_columns))), na.rm = TRUE)  # Compute mean for non-target cell types
+    ) %>%
+    dplyr::select(RegulonName, Target, NonTarget)  # Ensure correct column selection
+
   return(result)
 }
 
