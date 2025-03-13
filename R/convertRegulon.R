@@ -8,7 +8,7 @@
 #' @export
 convertRegulon <- function(regulon2disease_results, targetCelltype = 1) {
   # Step 1: Extract relevant columns
-  regulonScore <- regulon2disease_results[, c("RegulonName", "RegulonScore", "Celltype")]
+  regulonScore <- regulon2disease_results[, c("RegulonName", "TRS", "Celltype")]
 
   # Step 2: Convert to wide format with cell types as columns
   regulonScore_convert <- regulonScore %>%
