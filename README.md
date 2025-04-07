@@ -265,7 +265,7 @@ remotes::install_github(repo = 'genecell/COSGR')
 
 
 ### Citations
-Ma et al., scMORE uncovers cellular context-specific regulomes linked to complex diseases by integrating polygenic signals and single-cell multiomics, `In submission` 2025
+Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell type-specific regulomes critical for immune- and aging-related diseases and traits, `Nature Aging` (Under review), 2025
 
 
 
