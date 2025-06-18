@@ -8,7 +8,11 @@ createRegulon(
   single_cell,
   n_targets = 5,
   peak2gene_method = "Signac",
-  infer_method = "glm"
+  infer_method = "glm",
+  tss_upstream = 1e+05,
+  tss_downstream = 0,
+  exclude_exon_regions = TRUE,
+  conserved_regions = phastConsElements20Mammals.UCSC.hg38
 )
 }
 \arguments{
