@@ -15,35 +15,32 @@
 #'         - ZSTAT: Z-scores
 #' @export
 #'
-getGeneScore <- function(gene_info) {
-
-  if (!is.data.frame(gene_info)) {
+getGeneScore <- function(gene_info, p_floor = 1e-300) {
+  if (!is.data.frame(gene_info))
     stop("Input gene_info must be a data.frame or tibble.")
+
+  process_df <- function(df) {
+    df %>%
+      # 1. 先把 P=0 或极小值替换为 p_floor
+      dplyr::mutate(P_adj = ifelse(P <= 0 | is.na(P), p_floor, P),
+                    logP  = -log10(P_adj)) %>%
+      dplyr::arrange(dplyr::desc(logP)) %>%
+      dplyr::select(SYMBOL, logP, ZSTAT)
   }
 
-  # Check if gene symbols are already provided
   if ("SYMBOL" %in% colnames(gene_info)) {
-    # Process MAGMA-format data
-    geneRiskScores <- gene_info %>%
-      dplyr::mutate(logP = -log10(P)) %>%
-      dplyr::arrange(desc(logP)) %>%
-      dplyr::select(SYMBOL, logP, ZSTAT)
+    geneRiskScores <- process_df(gene_info)
   } else {
-    # Map gene identifiers to symbols using org.Hs.eg.db
     gene_info$SYMBOL <- AnnotationDbi::mapIds(
       org.Hs.eg.db,
-      keys = as.character(gene_info$GENE),
-      column = "SYMBOL",
-      keytype = "ENTREZID",
+      keys      = as.character(gene_info$GENE),
+      column    = "SYMBOL",
+      keytype   = "ENTREZID",
       multiVals = "first"
     )
-
-    # Filter out rows with missing gene symbols and process the data
     geneRiskScores <- gene_info %>%
       dplyr::filter(!is.na(SYMBOL)) %>%
-      dplyr::mutate(logP = -log10(P)) %>%
-      dplyr::arrange(desc(logP)) %>%
-      dplyr::select(SYMBOL, logP, ZSTAT)
+      process_df()
   }
 
   return(geneRiskScores)
