@@ -22,7 +22,11 @@
 createRegulon <- function(single_cell,
                           n_targets = 5,
                           peak2gene_method = 'Signac',
-                          infer_method = 'glm') {
+                          infer_method = 'glm',
+                          tss_upstream = 100000,
+                          tss_downstream=0,
+                          exclude_exon_regions = TRUE,
+                          conserved_regions = phastConsElements20Mammals.UCSC.hg38) {
 
   # Step 1: Select variable features from single-cell data
   single_cell <- Seurat::FindVariableFeatures(single_cell, assay = "RNA")
@@ -33,7 +37,8 @@ createRegulon <- function(single_cell,
     single_cell,
     peak_assay = "peaks",
     rna_assay = "RNA",
-    regions = phastConsElements20Mammals.UCSC.hg38
+    exclude_exons = exclude_exon_regions,
+    regions = conserved_regions
   )
 
   # Step 3: Scan candidate regions for TF binding motifs
@@ -49,7 +54,14 @@ createRegulon <- function(single_cell,
   single_cell <- Pando::infer_grn(
     single_cell,
     peak_to_gene_method = peak2gene_method,
-    method = infer_method
+    method = infer_method,
+    upstream=tss_upstream,
+    downstream=tss_downstream,
+    alpha = 0.5,
+    family = 'gaussian',
+    adjust_method = 'fdr',
+    scale = FALSE,
+    verbose = TRUE
   )
 
   # Step 5: Identify regulatory modules
