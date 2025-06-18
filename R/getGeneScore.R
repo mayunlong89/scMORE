@@ -5,6 +5,7 @@
 #' Extract and format gene-based genetic association results
 #'
 #' @param gene_info Data frame of gene-based genetic association results (MAGMA or FUMA format)
+#' @param p_floor # 1. Replace zero or extremely small P-values with a minimum threshold (p_floor) to avoid Inf in -log10(P)
 #' @importFrom dplyr %>% mutate arrange filter select
 #' @import dplyr
 #' @importFrom AnnotationDbi mapIds
@@ -21,7 +22,7 @@ getGeneScore <- function(gene_info, p_floor = 1e-300) {
 
   process_df <- function(df) {
     df %>%
-      # 1. 先把 P=0 或极小值替换为 p_floor
+      # 1. Replace P = 0 or extremely small values with p_floor
       dplyr::mutate(P_adj = ifelse(P <= 0 | is.na(P), p_floor, P),
                     logP  = -log10(P_adj)) %>%
       dplyr::arrange(dplyr::desc(logP)) %>%
