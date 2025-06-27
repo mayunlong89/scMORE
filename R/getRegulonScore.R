@@ -62,6 +62,7 @@ getRegulonScore <- function(each_module_score, theta = 0.5, alpha = 1) {
   return(list(
     SpecificityScore = M1,        # Final M1 (specificity score)
     GeneRiskScore = M2,          # Final M2 (genetic risk score)
+    Penalty = alpha * sd_mg_ms,
     RegulonScore = regulon_score # Final TRS score
   ))
 }

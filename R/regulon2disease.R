@@ -180,6 +180,10 @@ regulon2disease <- function(grn_outputs,
           GRS_P_value = p_importance,
           TRS = z_regulon,
           TRS_P_value = p_regulon,
+          CTS_raw=TRS$SpecificityScore,
+          GRS_raw= TRS$GeneRiskScore,
+          TRS_raw=TRS$RegulonScore,
+          Penalty=TRS$Penalty,
           Celltype = all_celltype_names[i]
         )
       )
