@@ -24,7 +24,8 @@ genome(genes) <- "hg38"  # Set genome build
 ```
 > Note: users could download the gencode.v44.annotation.gtf as follow:
 ```bash
-#downloading for unix
+# Download for Unix system
+
 wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.annotation.gtf.gz
 gunzip gencode.v44.annotation.gtf.gz
 
