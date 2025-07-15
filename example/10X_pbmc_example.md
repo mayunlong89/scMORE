@@ -3,7 +3,7 @@
 
 ## For example of single-cell multiomics dataset (10X_pbmc_400cells.rds)
 
-This example dataset contains 400 cells, with 200 monocytes and 200 CD8+T cells, used for users learning.
+> This example dataset contains 400 cells, with 200 monocytes and 200 CD8+T cells, used for users learning.
 
 ```r
 # Load 10x PBMC scMultiomic data
