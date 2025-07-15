@@ -22,6 +22,12 @@ txdb <- makeTxDbFromGFF(gtf_file, format = "gtf")
 genes <- genes(txdb)
 genome(genes) <- "hg38"  # Set genome build
 ```
+> Note: users could download the gencode.v44.annotation.gtf as follow:
+```bash
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.annotation.gtf.gz
+gunzip gencode.v44.annotation.gtf.gz
+
+```
 
 ## Step 3: Annotate Gene IDs with HGNC Symbols
 ```r
