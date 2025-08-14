@@ -253,7 +253,6 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocMana
 
 # Install Seurat from CRAN 
 install.packages('Seurat')
-library(Seurat)
 
 # or Install Seurat v5 from Github
 remotes::install_github("satijalab/seurat", "seurat5", quiet = TRUE)
