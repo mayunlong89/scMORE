@@ -251,6 +251,13 @@ magma_results <- read.table("magma.genes.out",header = TRUE)
 if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 
+# Install Seurat from CRAN
+install.packages('Seurat')
+library(Seurat)
+
+# or Install Seurat v5 from Github
+remotes::install_github("satijalab/seurat", "seurat5", quiet = TRUE)
+
 # Install ArchR package
 devtools::install_github("GreenleafLab/ArchR", ref="master", repos = BiocManager::repositories())
 
