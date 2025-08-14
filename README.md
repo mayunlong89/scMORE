@@ -240,9 +240,9 @@ magma_results <- read.table("magma.genes.out",header = TRUE)
 
 
 ```
-###### For more detailed codes on MAGMA tool, please refer to [here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
+###### For more detailed codes on MAGMA tool, please refer to [here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/), and download the MAGMA tool from [CNCR](https://cncr.nl/research/magma/).
 
-###### Download the MAGMA tool from [CNCR](https://cncr.nl/research/magma/).
+
 
 # Install other dependent packages
 ```r
