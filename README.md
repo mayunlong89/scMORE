@@ -251,7 +251,7 @@ magma_results <- read.table("magma.genes.out",header = TRUE)
 if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 
-# Install Seurat from CRAN
+# Install Seurat from CRAN 
 install.packages('Seurat')
 library(Seurat)
 
