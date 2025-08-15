@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-[scMORE (single cell MultiOmics Regulon Enrichment)](https://github.com/mayunlong89/scMORE) is designed to identify disease-relevant regulons by leveraging GWAS summary statistics and multimodal single-cell measurements, where gene expression and chromatin accessibility are either measured for each individual cell or integrated into metacell or clusters to capture both modalities.
+[scMORE](https://github.com/mayunlong89/scMORE) (single cell MultiOmics Regulon Enrichment) is designed to identify disease-relevant regulons by leveraging GWAS summary statistics and multimodal single-cell measurements, where gene expression and chromatin accessibility are either measured for each individual cell or integrated into metacell or clusters to capture both modalities.
 
 
 ![Workflow](https://github.com/mayunlong89/scMORE/blob/main/example/Figure%201.png)
