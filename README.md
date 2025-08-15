@@ -40,6 +40,10 @@ library(Signac)
 #load single-cell data
 single_cell <- readRDS("10X_PBMC_cells.rds")
 
+# Assign predefined cell types
+Idents(single_cell) <- single_cell$cell_type
+
+
 #load GWAS summary data
 snp_info <- read.csv("lymphocyte_count_maf0.01.txt",header=T,sep = "\t",stringsAsFactors = FALSE)
 
