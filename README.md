@@ -276,7 +276,7 @@ remotes::install_github(repo = 'genecell/COSGR')
 
 
 ### Citations
-Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell type-specific regulomes critical for immune- and aging-related diseases and traits, `Nature Aging` (In press), 2025
+Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell-type-specific regulomes critical for immune- and aging-related diseases, `Nature Aging` (In press), 2025
 
 
 
