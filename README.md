@@ -87,7 +87,7 @@ scMore(single_cell,
 | `getRegulonScore()`                | Calculate trait-associated regulon score (TRS) for each regulon |
 | `getRandomScore()`                 | Generate random regulon scores with matched regulon size for each actual regulon |
 | `max_min_scale()`                  | Scale the specificity score between 0 and 1 across all cells                                                                |
-| `getEnergyScore()`                 | Calculate the energy score for each dataset analysis (using for method assessment) |
+| `getEnergyScore()`                 | Calculate the energy score for each dataset analysis (using for method assessment. One can use raw E-score, or use log2(rawEscore+1)+1 to scale the E-score)  |
 
 
 
