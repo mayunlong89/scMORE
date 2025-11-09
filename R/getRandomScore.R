@@ -1,6 +1,6 @@
-#' Generate Random Regulon Scores
+#' Generate Random eRegulon Scores
 #'
-#' This function generates random regulon scores for a given set of transcription factors (TFs),
+#' This function generates random eRegulon scores for a given set of transcription factors (TFs),
 #' target gene background scores, and real specificity/importance scores. It computes three scores:
 #' SpecificityScore (M1, CTS), ImportanceWeightScore (M2,GRS), and the final RegulonScore (TRS), which includes a penalty term.
 #'
@@ -9,7 +9,7 @@
 #'        The data frame must have columns `genes` and scores for filtering and sampling.
 #' @param real_specificity A numeric vector of real specificity scores for sampling.
 #' @param real_importance A numeric vector of real importance scores for sampling.
-#' @param len_of_regulon An integer specifying the total number of genes (including the TF) in the regulon.
+#' @param len_of_regulon An integer specifying the total number of genes (including the TF) in the eRegulon.
 #'        Must be greater than 1.
 #' @param theta A numeric value representing the weight for combining TF specificity with gene scores.
 #'        Default is 0.5.
