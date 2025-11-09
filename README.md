@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-[scMORE](https://github.com/mayunlong89/scMORE) (single cell MultiOmics Regulon Enrichment) is designed to identify disease-relevant regulons by leveraging GWAS summary statistics and multimodal single-cell measurements, where gene expression and chromatin accessibility are either measured for each individual cell or integrated into metacell or clusters to capture both modalities.
+[scMORE](https://github.com/mayunlong89/scMORE) (single cell MultiOmics Regulon Enrichment) is designed to identify disease-relevant eRegulons by leveraging GWAS summary statistics and multimodal single-cell measurements, where gene expression and chromatin accessibility are either measured for each individual cell or integrated into metacell or clusters to capture both modalities.
 
 
 ![Workflow](https://github.com/mayunlong89/scMORE/blob/main/data/Figure%201.png)
@@ -75,7 +75,7 @@ scMore(single_cell,
 
 | Functions                           | Description                                                                                                                 |
 |------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| `scMore()`                         | The main function to fit the model for identifying cell type-specific regulons relevant to traits       |
+| `scMore()`                         | The main function to fit the model for identifying cell type-specific eRegulons relevant to traits       |
 | `createRegulon()`                  | Construct global TF-gene regulotory network using multimodal single-cell measurements                    |
 | `getSpecificity()`                 | Calculate the cell type-level specificity score of each gene or TF using the cosine similarity algorithm                    |
 | `getGeneScore()`                   | Extract and format gene-based genetic association results from MAGMA or FUMA                                 |
@@ -84,8 +84,8 @@ scMore(single_cell,
 | `snp2peak()`                       | Link SNPs to genomic peaks  |
 | `getPeakScore()`                   | Calculate the gene relevance scores (GRS) using the product of peak relevance, peak-gene strength, and gene relevance |
 | `getRiskScore()`                   | Extract the highest peak-gene strength scores for each target (node) |
-| `getRegulonScore()`                | Calculate trait-associated regulon score (TRS) for each regulon |
-| `getRandomScore()`                 | Generate random regulon scores with matched regulon size for each actual regulon |
+| `getRegulonScore()`                | Calculate trait-associated regulon score (TRS) for each eRegulon |
+| `getRandomScore()`                 | Generate random eRegulon scores with matched regulon size for each REAL eRegulon |
 | `max_min_scale()`                  | Scale the specificity score between 0 and 1 across all cells                                                                |
 | `getEnergyScore()`                 | Calculate the energy score for each dataset analysis (using for method assessment). One can use raw E-score, or use log2(rawEscore+1)+1 to scale the E-score  |
 
