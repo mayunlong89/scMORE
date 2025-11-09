@@ -1,5 +1,5 @@
 #'
-#' @title Calculates the peak importance score for a given regulon
+#' @title Calculates the peak importance score for a given eRegulon
 #'
 #' @description
 #' It extracts the highest importance score for each target and calculates the total importance for the transcription factor (TF).
