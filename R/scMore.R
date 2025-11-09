@@ -1,7 +1,7 @@
 #' @title Single-Cell MultiOmics Regulon Enrichment (scMORE)
 #'
 #' @description
-#' Main function for identifying disease-relevant regulons using single-cell data.
+#' Main function for identifying disease-relevant eRegulons using single-cell data.
 #'
 #' @param single_cell The input single-cell data, typically a Seurat or SingleCellExperiment object.
 #' @param snp_info GWAS summary statistics. Must include the following columns:
@@ -38,7 +38,7 @@
 #' @param nSeed Random seed for reproducibility (i.e., `set.seed()`). Default: 1234.
 #'
 #' @return A list containing:
-#'         - Disease-relevant regulons
+#'         - Disease-relevant eRegulons
 #'         - Their genetic and cell-type associations
 #'
 #' @export
