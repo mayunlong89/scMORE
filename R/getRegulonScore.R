@@ -1,8 +1,8 @@
-#' @title Calculates the Trait-associated Regulon Score (TRS) for a given regulon
+#' @title Calculates the Trait-associated Regulon Score (TRS) for a given eRegulon
 #'
 #' @description
 #' This function combines the importance weight (genetic risk score) and specificity score
-#' (cell type specificity) to calculate a TRS (Trait-associated Regulon Score) for a given regulon.
+#' (cell type specificity) to calculate a TRS (Trait-associated Regulon Score) for a given eRegulon.
 #'
 #' @param each_module_score A single regulon matrix containing importance weights and specificity scores;
 #'                          this is generated in the 'regulon2disease()' function.
@@ -12,7 +12,7 @@
 #' @return A list containing:
 #'         - `SpecificityScore`: The computed M1 value (specificity score).
 #'         - `GeneRiskScore`: The computed M2 value (genetic risk score).
-#'         - `RegulonScore`: The final TRS score for the regulon.
+#'         - `RegulonScore`: The final TRS score for the eRegulon.
 #'
 #' @export
 #'
