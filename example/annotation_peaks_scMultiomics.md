@@ -61,15 +61,15 @@ Annotation(bmmc_subset[["peaks"]]) <- genes
 >💡 This step attaches gene information (including HGNC symbols) to your peaks, which will be used for downstream analyses.
 
 
-## Step 5: Run Regulon Inference (e.g., using Pando)
+## Step 5: Run eRegulon Inference (e.g., using Pando)
 ```r
 # Set RNA as active assay
 DefaultAssay(bmmc_subset) <- "RNA"
 
-# Compute regulons using peak-gene relationships
+# Compute eRegulons using peak-gene relationships
 grn_outputs_bmmc <- createRegulon(bmmc_subset, n_targets = 5)
 ```
->To run createRegulon() on new single-cell multi-omics data (e.g., RNA + ATAC), make sure that peak-to-gene annotations are properly added. The above pipeline shows how to use GENCODE and Ensembl biomaRt to map peaks to gene symbols and assign them to your Seurat object using Annotation(). This is a required step before downstream regulon or GRN analysis.
+>To run createRegulon() on new single-cell multi-omics data (e.g., RNA + ATAC), make sure that peak-to-gene annotations are properly added. The above pipeline shows how to use GENCODE and Ensembl biomaRt to map peaks to gene symbols and assign them to your Seurat object using Annotation(). This is a required step before downstream eRegulon or GRN analysis.
 
 
 
