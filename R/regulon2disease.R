@@ -1,7 +1,7 @@
-#' @title Identify Cell Type-Specific Regulons Relevant to Disease
+#' @title Identify Cell Type-Specific eRegulons Relevant to Disease
 #'
 #' @description
-#' Function to identify cell type-specific regulons (TRS) that are associated with disease by integrating
+#' Function to identify cell type-specific eRegulons (TRS) that are associated with disease by integrating
 #' cell type specificity scores(CTS) and genetic relevance scores (GRS).
 #'
 #' @param grn_outputs GRN (Gene Regulatory Network) outputs containing TF-gene relationships.
@@ -29,17 +29,17 @@
 #'   - 'bagging_ridge': Bagging ridge and Bayesian ridge (CellOracle)
 #'   - 'xgb': XGBoost gradient-boosted Random Forest (SCENIC)
 #' @param p1 Threshold for statistical significance of the cell type-specificity score (CTS)
-#'           for each regulon. Default: 0.05.
+#'           for each eRegulon. Default: 0.05.
 #' @param p2 Threshold for statistical significance of the genetic relevance score (GRS)
-#'           for each regulon. Default: 0.05.
+#'           for each eRegulon. Default: 0.05.
 #' @param p3 Threshold for statistical significance of the trait-associated regulon score (TRS).
 #'           Default: 0.05.
 #'
 #' @return A data frame containing the following:
-#'         - `specificity`: Cell type-specificity scores for each regulon (CTS).
-#'         - `genetic_risk_score`: Genetic relevance scores for each regulon (GRS).
+#'         - `specificity`: Cell type-specificity scores for each eRegulon (CTS).
+#'         - `genetic_risk_score`: Genetic relevance scores for each eRegulon (GRS).
 #'         - `regulon_score`: Trait-associated regulon scores (TRS).
-#'         - `p_values`: Statistical significance values for specificity, risk, and regulon scores.
+#'         - `p_values`: Statistical significance values for specificity, risk, and eRegulon scores.
 #'
 #' @export
 #'
