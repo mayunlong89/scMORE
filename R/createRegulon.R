@@ -3,7 +3,7 @@
 #' Use single-cell multiomics data (scRNA-seq and scATAC-seq) to construct a global TF-peak-gene regulatory network.
 #'
 #' @param single_cell Input single-cell multiomics data (Seurat object)
-#' @param n_targets Minimum number of targets required in a regulon (default = 5)
+#' @param n_targets Minimum number of targets required in an eRegulon (default = 5)
 #' @param peak2gene_method Method for peak-to-gene linkage: 'Signac' or 'GREAT'
 #' @param infer_method GRN inference method:
 #'   - 'glm' (default): Generalized linear model
@@ -14,7 +14,7 @@
 #'
 #' @return A list containing:
 #'   - grn: Filtered GRN with regulons meeting the gene threshold
-#'   - tf_names: List of TFs with sufficient regulons
+#'   - tf_names: List of TFs with sufficient eRegulons
 #'
 #' @importFrom BSgenome.Hsapiens.UCSC.hg38 BSgenome.Hsapiens.UCSC.hg38
 #' @import Pando
