@@ -226,7 +226,7 @@ export OUTPUT=/share/pub/mayl/MAGMA_test
 $MAGMA_DIR/magma \
     --snp-loc  $DATA/GWAS_UKBiobank_summary_final.hg19.location  \
     --annotate window=10,10 --gene-loc $MAGMA_DIR/NCBI37.3.gene.loc \
-    --out $OUTPUT/GWAS_UKBiobank_summary_final.hg19_SNP_Gene_annotation  
+    --out $OUTPUT/GWAS_UKBiobank_summary_final_SNP_Gene_annotation  
 
 # gene-based association analysis:
 $MAGMA_DIR/magma \
@@ -234,7 +234,7 @@ $MAGMA_DIR/magma \
     --pval $DATA/GWAS_UKBiobank_summary_final.results_Pval \
     N=13239 \
     --gene-annot   $OUTPUT/GWAS_UKBiobank_summary_final.hg19_SNP_Gene_annotation.genes.annot  \
-    --out $OUTPUT/GWAS_UKBiobank_summary_final.hg19_SNP_Gene_Analysis_P
+    --out $OUTPUT/GWAS_UKBiobank_summary_final_SNP_Gene_Analysis_P
 
 
 # 2) Processing MAGMA-results: 'magma.genes.out'
@@ -276,7 +276,7 @@ remotes::install_github(repo = 'genecell/COSGR')
 
 
 ### Citations
-Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell-type-specific regulomes critical for immune- and aging-related diseases, `Nature Aging` (In press), 2025
+Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell-type-specific regulomes critical for immune- and aging-related diseases, [Nature Aging](https://app.paperpile.com/view/?id=1ab35a6b-becf-4805-9dfd-53bdcb98c1ae),17 December, 2025
 
 
 
