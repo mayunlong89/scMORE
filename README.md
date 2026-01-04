@@ -288,7 +288,9 @@ We thus established scHOB ([single-cell Human Organoid Bank](https://schob.su-la
 
 ### Application examples:
 1. Ma et al., Integration of human organoids single-cell transcriptomic profiles and human genetics repurposes critical cell type-specific drug targets for severe COVID-19. [Cell Proliferation](https://onlinelibrary.wiley.com/doi/full/10.1111/cpr.13558),2024, and see related [Github codes](https://github.com/mayunlong89/scHuman_organoids_COVID19).
-2. Ma et al., Sytematic dissection of pleiotropic loci and critical regulons in excitatory neurons and microglia relevant to neuropsychiatric and ocular diseases, [Translational Psychiatry](https://doi.org/10.1038/s41398-025-03243-4), 2025. preprint version see: [Research Square](https://www.researchsquare.com/article/rs-4514542/v1), 2024.
+2. Ma et al., Sytematic dissection of pleiotropic loci and critical regulons in excitatory neurons and microglia relevant to neuropsychiatric and ocular diseases, [Translational Psychiatry](https://doi.org/10.1038/s41398-025-03243-4), 2025. preprint version see: [Research Square](https://www.researchsquare.com/article/rs-4514542/v1), 2025.
+3. Ma, Y. & Su, J. Linking single-cell multiomics with GWAS to reveal key regulators of disease risk. [Nature Aging](https://www.nature.com/articles/s43587-025-01047-1#citeas) 1–2 (2026).
+
 
 
 ### Other references:
