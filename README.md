@@ -277,9 +277,7 @@ remotes::install_github(repo = 'genecell/COSGR')
 
 ### Citations
 Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell-type-specific regulomes critical for immune- and aging-related diseases, [Nature Aging](https://www.nature.com/articles/s43587-025-01027-5), 17 December,2025
-
- Ma, Y. & Su, J. Linking single-cell multiomics with GWAS to reveal key regulators of disease risk. [Nature Aging](https://doi.org/10.1038/s43587-025-01047-1), 2026.
-
+ 
 
 ## scHOB Database
 Human organoids are advanced three-dimensional structures that accurately recapitulate key characteristics of human organ development and functions. Unlike two-dimensional cultures lacking critical cell-cell communications, organoids provides a powerful model for recovering complex cellular dynamics involved in developmental and homeostatic processes. Organoids also allow genetic and pharmacological manipulation in a more physiologically relevant context compared to animal models. Although single-cell sequencing advancements have accelerated their biological and therapeutic use, there has been no systematic platform for unified processing and analysis of organoid-based single-cell multiomics data. 
