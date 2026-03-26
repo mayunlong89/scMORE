@@ -278,6 +278,7 @@ remotes::install_github(repo = 'genecell/COSGR')
 ### Citations
 Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell-type-specific regulomes critical for immune- and aging-related diseases, [Nature Aging](https://www.nature.com/articles/s43587-025-01027-5), 17 December,2025
 
+ Ma, Y. & Su, J. Linking single-cell multiomics with GWAS to reveal key regulators of disease risk. [Nature Aging](https://doi.org/10.1038/s43587-025-01047-1), 2026.
 
 
 ## scHOB Database
