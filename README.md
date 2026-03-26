@@ -1,7 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# scMORE
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/mayunlong89/scMORE/blob/main/data/scMORE_logo.png" width="250">
+    </td>
+    <td>
+      <h1>scMORE</h1>
+      <p>A scalable framework for inferring trait-relevant TF-eRegulons by integrating single-cell multiomic data with GWAS data</p>
+    </td>
+  </tr>
+</table>
 
 <!-- badges: start -->
 <!-- badges: end -->
