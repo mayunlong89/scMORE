@@ -286,7 +286,10 @@ remotes::install_github(repo = 'genecell/COSGR')
 
 
 ### Citations
-Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell-type-specific regulomes critical for immune- and aging-related diseases, [Nature Aging](https://www.nature.com/articles/s43587-025-01027-5), 17 December,2025
+Ma et al., Integrating polygenic signals and single-cell multiomics identifies cell-type-specific regulomes critical for immune- and aging-related diseases, [Nature Aging](https://www.nature.com/articles/s43587-025-01027-5), 2026.
+
+### scMORE reproduce
+> For more details on the repeat codes and figure generation scripts, please refer to [scMORE_reproduce](https://github.com/mayunlong89/scMORE_reproduce).
  
 
 ## scHOB Database
