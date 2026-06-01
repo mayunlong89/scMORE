@@ -45,7 +45,7 @@ peak2gene <- function(grn_outputs, infer_method = 'glm') {
     dplyr::mutate(
       Strength = switch(
         infer_method,
-        glm = -log10(Pval),
+        glm = -log10(Pval+1e-323),
         cv.glmnet = (Corr + 1) / 2,
         glmnet = (Corr + 1) / 2,
         xgb = Gain + 0.00005
