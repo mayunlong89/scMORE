@@ -2,7 +2,6 @@
 
 > FUMA/MAGMA gene_info: may be based on either hg19 or GRCh38 because it provides gene-level association statistics; coordinate consistency is not essential for this input.
 
-
 ```bash
 # Step 1: Perform quality control on all SNPs based on MAF and sex chromosomes
 # In our analysis, SNPs with minor allele frequencies (MAF) < 0.01 or located on sex chromosomes (ChrX and ChrY) were excluded.
