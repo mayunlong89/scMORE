@@ -117,12 +117,11 @@ Idents(single_cell) <- single_cell$cell_type
 ```r
 #1) Single-cell data
 
-The input format of single-cell data: Seurat-generated S4 object. (based on the GRCh38 genome assembly)
+The input format of single-cell data: Seurat-generated S4 object based on the GRCh38 genome assembly.
 
 scMORE is fully compatiable with Seurat, a widely-used single-cell analysis tool.
 
 #2) snp_info (GWAS summary statistics)
-GWAS variant coordinates must be provided in the GRCh38 genome assembly as ATAC peaks. If the original GWAS summary statistics are based on hg19/GRCh37, users should first convert the variant coordinates to GRCh38 using [UCSC liftover](https://genome.ucsc.edu/cgi-bin/hgLiftOver))
 #CHR: chromosome;
 #POS: position;
 #ES: effect size;
@@ -176,8 +175,7 @@ ENSG00000187961	1	895967	901095	66	21	171643	0.24218	0.40432	KLHL17
 
 
 ````
-
-> All GWAS variant coordinates were harmonized to GRCh38 using UCSC liftOver, and only uniquely mapped variants were retained. scATAC-seq peaks, gene annotations, conserved elements and reference sequences were represented in GRCh38 before SNP-to-peak mapping.
+> All GWAS variant coordinates were harmonized to GRCh38 using [UCSC liftover](https://genome.ucsc.edu/cgi-bin/hgLiftOver), and only uniquely mapped variants were retained. scATAC-seq peaks, gene annotations, conserved elements and reference sequences were represented in GRCh38 before SNP-to-peak mapping.
 
 ### Generate MAGMA results
 
