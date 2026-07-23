@@ -1,8 +1,7 @@
 
 #### Processing SNPs from GWAS summary statistics to form the 'snp_info' file
 
-> GWAS variant coordinates must be provided in the GRCh38 genome assembly (as ATAC peaks).
-> If the original GWAS summary statistics are based on hg19/GRCh37, users should first convert the variant coordinates to GRCh38 using [UCSC liftover](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
+> GWAS variant coordinates must be provided in the GRCh38 genome assembly (as ATAC peaks). If the original GWAS summary statistics are based on hg19/GRCh37, users should first convert the variant coordinates to GRCh38 using [UCSC liftover](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
 
 
 ```bash
