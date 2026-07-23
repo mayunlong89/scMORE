@@ -213,7 +213,7 @@ magma_results <- read.table("magma.genes.out",header = TRUE)
 
 ```
 ###### For more detailed codes on MAGMA tool, please refer to [GWASTutorial](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/), and download the MAGMA tool from [CNCR](https://cncr.nl/research/magma/).
-
+> FUMA/MAGMA gene_info: may be based on either hg19 or GRCh38 because it provides gene-level association statistics; coordinate consistency is not essential for this input.
 
 
 # Install other dependent packages
