@@ -2,6 +2,7 @@
 
 > GWAS variant coordinates must be provided in the GRCh38 genome assembly (as ATAC peaks). If the original GWAS summary statistics are based on hg19/GRCh37, users should first convert the variant coordinates to GRCh38 using [UCSC liftover](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
 
+
 ```bash
 # Step 1: Perform quality control on all SNPs based on MAF and sex chromosomes
 # In our analysis, SNPs with minor allele frequencies (MAF) < 0.01 or located on sex chromosomes (ChrX and ChrY) were excluded.
