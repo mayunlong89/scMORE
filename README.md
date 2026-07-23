@@ -175,7 +175,8 @@ ENSG00000187961	1	895967	901095	66	21	171643	0.24218	0.40432	KLHL17
 
 
 ````
-> All GWAS variant coordinates were harmonized to GRCh38 using [UCSC liftover](https://genome.ucsc.edu/cgi-bin/hgLiftOver), and only uniquely mapped variants were retained. scATAC-seq peaks, gene annotations, conserved elements and reference sequences were represented in GRCh38 before SNP-to-peak mapping.
+> All GWAS variant coordinates were harmonized to GRCh38 using [UCSC liftover](https://genome.ucsc.edu/cgi-bin/hgLiftOver), and only uniquely mapped variants were retained.
+> scATAC-seq peaks, gene annotations, conserved elements and reference sequences were represented in GRCh38 before SNP-to-peak mapping.
 
 ### Generate MAGMA results
 
