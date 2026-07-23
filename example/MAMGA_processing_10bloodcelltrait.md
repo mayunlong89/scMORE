@@ -1,6 +1,5 @@
 ### GWAS Summary Statistics Processing for MAGMA
 
-> GWAS variant coordinates must be provided in the GRCh38 genome assembly (as ATAC peaks). If the original GWAS summary statistics are based on hg19/GRCh37, users should first convert the variant coordinates to GRCh38 using [UCSC liftover](https://genome.ucsc.edu/cgi-bin/hgLiftOver).
 > FUMA/MAGMA gene_info: may be based on either hg19 or GRCh38 because it provides gene-level association statistics; coordinate consistency is not essential for this input.
 
 
